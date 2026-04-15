@@ -8,7 +8,7 @@ export const SantaCaronaSignature: React.FC = () => (
     <img
       src="https://santacarona.com.br/wp-content/uploads/2024/03/LOGO-SC-BRANCA.png"
       alt="Santa Carona"
-      className="w-[55%] max-w-[130px] h-auto"
+      className="w-[120px] h-auto"
     />
   </div>
 );
