@@ -14,7 +14,7 @@ interface AdBannerProps {
  *     - data-ad-slot   → ID do bloco      (ex: "9876543210")
  */
 
-const AD_CLIENT = 'ca-pub-XXXXXXXXXXXXXXXX'; // ← substitua pelo seu Publisher ID
+const AD_CLIENT = 'ca-pub-2560972696133896';
 const AD_SLOT   = 'XXXXXXXXXX';             // ← substitua pelo ID do bloco de anúncio
 
 export const AdBanner: React.FC<AdBannerProps> = ({ className = '' }) => {
