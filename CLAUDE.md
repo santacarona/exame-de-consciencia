@@ -2,10 +2,33 @@
 
 ## Visão Geral
 
-Webapp de exame de consciência para preparação à confissão católica. Criado originalmente no Google AI Studio. O objetivo atual é revisar a UI, aplicar melhorias e publicar o app.
+Webapp de exame de consciência para preparação à confissão católica. Criado originalmente no Google AI Studio e publicado em produção.
 
 **Iniciativa:** Santa Carona  
 **Público-alvo:** Fiéis católicos de diferentes perfis (crianças, jovens, adultos, sacerdotes)
+
+---
+
+## URLs
+
+| Ambiente | URL |
+|----------|-----|
+| Produção | https://exame.santacarona.com.br |
+| Vercel (provisório) | https://exame-de-consciencia-one.vercel.app |
+| Local | http://localhost:3000 |
+
+---
+
+## Repositório e Deploy
+
+| Item | Detalhe |
+|------|---------|
+| GitHub | https://github.com/santacarona/exame-de-consciencia |
+| Plataforma | Vercel (plano gratuito) |
+| Deploy | Automático — push na branch `main` dispara novo deploy |
+| DNS | CNAME `exame` → `5ff92666c01b7017.vercel-dns-017.com.` (NapoleonHost) |
+
+**Para publicar uma atualização:** basta fazer commit e push para `main`. O Vercel detecta e faz o deploy automaticamente.
 
 ---
 
@@ -19,7 +42,7 @@ Webapp de exame de consciência para preparação à confissão católica. Criad
 | Animações | Framer Motion |
 | Ícones | Lucide React |
 | Estado | React `useState` / `useRef` |
-| Persistência | `localStorage` (sessão temporária) |
+| Persistência | `sessionStorage` (apagado ao fechar a aba) |
 
 > **Atenção:** Tailwind está carregado via CDN (`<script src="https://cdn.tailwindcss.com">`), não como pacote npm. A configuração de tema fica inline no `index.html`.
 
@@ -43,7 +66,8 @@ Webapp de exame de consciência para preparação à confissão católica. Criad
     ├── ConfessionGuideScreen.tsx # Guia para a confissão
     ├── ResultsScreen.tsx         # Lista de pecados acusados ao final
     ├── ConfirmationModal.tsx     # Modal de confirmação de saída
-    └── PrayerModal.tsx           # Modal de oração
+    ├── PrayerModal.tsx           # Modal de oração
+    └── AdBanner.tsx              # Banner Google AdSense (320×50)
 ```
 
 ---
@@ -80,22 +104,38 @@ intro → preparation → exam → results
 ## Design System
 
 **Paleta de cores (definida no `index.html`):**
-- `primary` — `#8B459E` (roxo)
-- `primary-dim` — `#5E3A6C`
-- `accent-light` — `#C7B4C8`
-- `background-dark` — `#1A0A26`
-- `parchment` — `#E0D8E8` (texto principal)
-- `confess` — `#9E2B2B` (vermelho escuro)
-- `deny` — `#5C5C5C` (cinza)
+- `primary` — `#FF4F00` (laranja Santa Carona)
+- `primary-dim` — `#CC3E00`
+- `accent-light` — `#D4C5A9`
+- `background-dark` / `obsidian` — `#0D0D0D`
+- `obsidian-light` — `#161616`
+- `parchment` — `#F0EAD6` (texto principal)
+- `parchment-dim` — `#D4C5A9`
+- `confess` — `#7A1C1C` (bordô escuro)
+- `deny` — `#4A4A4A` (cinza chumbo)
 
 **Classes utilitárias customizadas (CSS global no `index.html`):**
-- `.glass-panel` — painel com efeito vidro (backdrop-filter + border roxa translúcida)
+- `.glass-panel` — painel com efeito vidro (backdrop-filter + border translúcida)
 - `.bg-noise` — textura de ruído SVG inline
-- `.text-glow` — text-shadow roxa
+- `.text-glow` — text-shadow laranja
 
 **Fontes:**
 - `font-sans` / `font-display` — Inter
-- `font-serif` — Georgia / Times New Roman
+- `font-serif` — EB Garamond (Google Fonts) — usar sem itálico (`font-normal`)
+
+---
+
+## Google AdSense
+
+Estrutura já implementada em `components/AdBanner.tsx`. Banners posicionados em:
+- Tela inicial (`IntroSelection`) — abaixo dos cards de perfil
+- Como funciona (`InstructionsScreen`) — footer, acima do botão
+- Guia de confissão (`ConfessionGuideScreen`) — footer, acima do botão
+- Resultados (`ResultsScreen`) — entre a lista e os botões de ação
+
+**Para ativar quando a conta AdSense for aprovada:**
+1. Em `index.html`: descomentar o `<script>` do AdSense e substituir o Publisher ID
+2. Em `components/AdBanner.tsx`: substituir `AD_CLIENT` e `AD_SLOT` pelos valores reais
 
 ---
 
@@ -108,21 +148,19 @@ npm run build   # Build de produção (dist/)
 npm run preview # Preview do build
 ```
 
+**Para publicar atualizações:**
+```bash
+git add .
+git commit -m "descrição da mudança"
+git push
+# Vercel faz o deploy automaticamente
+```
+
 ---
 
 ## Notas Importantes
 
-- O `README.md` menciona `GEMINI_API_KEY`, mas o app não usa nenhuma API de IA. Essa referência é herança do template do AI Studio e pode ser ignorada.
-- O `package-lock.json` está vazio — rodar `npm install` vai gerá-lo corretamente.
-- O app é **totalmente client-side**, sem backend. Ideal para deploy estático.
-
----
-
-## Publicação (Planejado)
-
-O deploy será em plataforma estática. Candidatos:
-- **Vercel** (recomendado — integração com git, deploy automático)
-- **Netlify**
-- **GitHub Pages**
-
-Build output: `dist/` via `npm run build`.
+- O app é **totalmente client-side**, sem backend. Nenhum dado sai do dispositivo do usuário.
+- `sessionStorage` armazena a lista de pecados apenas durante a sessão — apagado ao fechar a aba.
+- A função "Copiar" envia o texto apenas para a área de transferência local.
+- O `README.md` menciona `GEMINI_API_KEY` — herança do template do AI Studio, ignorar.
