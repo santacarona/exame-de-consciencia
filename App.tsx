@@ -191,8 +191,8 @@ export default function App() {
             </main>
 
             {/* Footer Actions (Stitch Design) */}
-            <footer className="relative z-10 w-full px-8 pb-6 pt-2 shrink-0 flex flex-col items-center">
-                <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-6">
+            <footer className="relative z-10 w-full px-8 pb-4 pt-2 shrink-0 flex flex-col items-center">
+                <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-3">
                     {/* Nego Button - Triggers Left Swipe */}
                     <div 
                         className="flex flex-col items-center gap-2 group cursor-pointer"
