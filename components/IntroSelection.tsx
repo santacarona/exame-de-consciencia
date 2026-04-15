@@ -11,10 +11,10 @@ interface IntroSelectionProps {
 
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
   return (
-    <div className="relative flex h-full w-full flex-col animate-in fade-in duration-700">
+    <div className="relative h-full w-full overflow-y-auto animate-in fade-in duration-700">
 
-      {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto px-6 w-full max-w-md mx-auto z-10 pt-8 pb-4">
+      {/* Container interno: centraliza verticalmente quando há espaço, scroll quando não há */}
+      <main className="min-h-full flex flex-col justify-center px-6 w-full max-w-md mx-auto z-10 py-8">
 
         {/* Hero Title Section */}
         <div className="mb-3 text-center relative w-full">
@@ -135,15 +135,16 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
           </button>
 
           <AdBanner className="mt-2" />
-          
-        </div>
-      </main>
 
-      <footer className="relative z-10 w-full py-3 flex items-center justify-center shrink-0">
+        </div>
+
+        <footer className="w-full py-3 flex items-center justify-center mt-2">
           <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
               Uma iniciativa Santa Carona
           </p>
-      </footer>
+        </footer>
+
+      </main>
     </div>
   );
 };
