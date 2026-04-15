@@ -13,11 +13,8 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
   return (
     <div className="relative flex h-full w-full flex-col animate-in fade-in duration-700">
 
-      {/* Header Placeholder (To match design spacing) */}
-      <header className="flex items-center justify-between p-4 pb-2 z-10 min-h-[56px] shrink-0"></header>
-
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto px-6 w-full max-w-md mx-auto z-10 py-4">
+      <main className="flex-1 overflow-y-auto px-6 w-full max-w-md mx-auto z-10 pt-8 pb-4">
 
         {/* Hero Title Section */}
         <div className="mb-3 text-center relative w-full">
