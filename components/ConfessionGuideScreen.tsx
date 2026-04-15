@@ -53,10 +53,10 @@ export const ConfessionGuideScreen: React.FC<ConfessionGuideScreenProps> = ({ on
   };
 
   return (
-    <div className="relative flex h-full w-full flex-col bg-transparent text-parchment overflow-hidden font-display animate-in fade-in duration-500">
-      
+    <div className="relative flex h-full w-full flex-col bg-transparent text-parchment font-display animate-in fade-in duration-500">
+
       {/* Background Texture Simulation */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent mix-blend-overlay"></div>
+      <div className="absolute inset-0 z-0 overflow-hidden opacity-20 pointer-events-none bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent mix-blend-overlay"></div>
 
       {/* Header */}
       <header className="relative z-20 flex items-center justify-between p-4 bg-transparent shrink-0">

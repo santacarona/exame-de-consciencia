@@ -11,23 +11,23 @@ interface IntroSelectionProps {
 
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
   return (
-    <div className="relative flex h-full min-h-screen w-full flex-col justify-between animate-in fade-in duration-700">
-      
+    <div className="relative flex h-full w-full flex-col animate-in fade-in duration-700">
+
       {/* Header Placeholder (To match design spacing) */}
-      <header className="flex items-center justify-between p-4 pb-2 z-10 min-h-[56px]"></header>
+      <header className="flex items-center justify-between p-4 pb-2 z-10 min-h-[56px] shrink-0"></header>
 
       {/* Main Content Area */}
-      <main className="flex-1 flex flex-col items-center justify-center px-6 w-full max-w-md mx-auto z-10 py-6">
-        
+      <main className="flex-1 overflow-y-auto px-6 w-full max-w-md mx-auto z-10 py-4">
+
         {/* Hero Title Section */}
-        <div className="mb-4 text-center relative w-full">
-          <h1 className="text-parchment text-[38px] font-serif font-normal leading-[1.15] tracking-wide text-glow mb-2">
+        <div className="mb-3 text-center relative w-full">
+          <h1 className="text-parchment text-[32px] font-serif font-normal leading-[1.15] tracking-wide text-glow mb-2">
             Exame de<br/><span className="text-primary">Consciência</span>
           </h1>
         </div>
 
         {/* Links de Suporte (Minimalista - Opção 1) */}
-        <div className="flex items-center justify-center gap-3 mb-8 text-sm font-bold tracking-[0.1em] text-parchment/40 font-sans uppercase">
+        <div className="flex items-center justify-center gap-3 mb-6 text-sm font-bold tracking-[0.1em] text-parchment/40 font-sans uppercase">
             <button 
                 onClick={onInstructions}
                 className="hover:text-primary transition-colors border-b border-transparent hover:border-primary/30 pb-0.5"
@@ -44,7 +44,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
         </div>
 
         {/* Selection List */}
-        <div className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-3 w-full">
           
           {/* Card Criança */}
           <button
@@ -109,7 +109,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
           {/* Card Confissão Geral */}
           <button
             onClick={() => onSelect('general')}
-            className="group relative flex w-full items-center gap-4 rounded-xl border border-parchment/15 bg-obsidian-light p-4 transition-all duration-300 hover:border-parchment/35 hover:bg-parchment/5 active:scale-95 text-left mb-8"
+            className="group relative flex w-full items-center gap-4 rounded-xl border border-parchment/15 bg-obsidian-light p-4 transition-all duration-300 hover:border-parchment/35 hover:bg-parchment/5 active:scale-95 text-left"
           >
             <Scroll className="text-parchment/70 w-9 h-9 group-hover:text-parchment transition-colors shrink-0 ml-1" strokeWidth={1.5} />
             <div className="flex-1">
@@ -128,7 +128,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
         </div>
       </main>
 
-      <footer className="relative z-10 w-full py-4 flex items-center justify-center shrink-0">
+      <footer className="relative z-10 w-full py-3 flex items-center justify-center shrink-0">
           <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
               Uma iniciativa Santa Carona
           </p>

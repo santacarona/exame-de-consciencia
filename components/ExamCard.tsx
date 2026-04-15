@@ -90,7 +90,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
         dragElastic={1}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 40 }}
         onDragEnd={handleDragEnd}
-        className="pointer-events-auto glass-panel relative w-full max-w-sm aspect-[4/5] max-h-[520px] rounded-2xl p-8 flex flex-col items-center justify-between group border border-white/5 cursor-grab active:cursor-grabbing"
+        className="pointer-events-auto glass-panel relative w-full max-w-sm aspect-[4/5] max-h-[min(460px,56vh)] rounded-2xl p-6 flex flex-col items-center justify-between group border border-white/5 cursor-grab active:cursor-grabbing"
       >
         {/* Inner Border Decoration */}
         <div className="absolute inset-3 border border-primary/10 rounded-xl pointer-events-none"></div>
