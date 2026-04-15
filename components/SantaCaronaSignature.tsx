@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SantaCaronaSignature: React.FC = () => (
-  <div className="flex items-center justify-center gap-2 opacity-25">
+  <div className="flex items-center justify-center gap-2 opacity-60">
     <span className="text-[9px] text-parchment uppercase tracking-widest font-sans select-none">
       Uma iniciativa
     </span>
