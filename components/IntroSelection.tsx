@@ -1,7 +1,8 @@
 import React from 'react';
 import { UserType } from '../types';
-import { Link, Leaf, Church, ChevronRight, Baby, Scroll } from 'lucide-react';
+import { Leaf, Church, ChevronRight, Baby, Scroll } from 'lucide-react';
 import { AdBanner } from './AdBanner';
+import { WeddingRingsIcon } from './WeddingRingsIcon';
 
 interface IntroSelectionProps {
   onSelect: (type: UserType) => void;
@@ -81,7 +82,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
             onClick={() => onSelect('adult')}
             className="group relative flex w-full items-center gap-4 rounded-xl border border-primary/20 bg-obsidian-light p-4 transition-all duration-300 hover:border-primary/50 hover:bg-primary/5 active:scale-95 text-left"
           >
-            <Link className="text-primary w-9 h-9 shrink-0 ml-1" strokeWidth={1.5} />
+            <WeddingRingsIcon size={36} strokeWidth={1.5} className="text-primary shrink-0 ml-1" />
             <div className="flex-1">
               <h3 className="text-parchment text-lg font-serif mb-0.5">Adulto</h3>
               <p className="text-parchment-dim text-sm leading-snug opacity-70 font-sans">

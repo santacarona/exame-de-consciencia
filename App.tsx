@@ -8,7 +8,8 @@ import { ConfirmationModal } from './components/ConfirmationModal';
 import { ConfessionGuideScreen } from './components/ConfessionGuideScreen';
 import { UserType, AppStage, Question } from './types';
 import { YOUTH_QUESTIONS, ADULT_QUESTIONS, PRIEST_QUESTIONS, CHILD_QUESTIONS, GENERAL_CONFESSION_QUESTIONS } from './constants';
-import { Undo2, X, Church, Check, X as XIcon, Link, Leaf, Baby, Scroll } from 'lucide-react';
+import { Undo2, X, Church, Check, X as XIcon, Leaf, Baby, Scroll } from 'lucide-react';
+import { WeddingRingsIcon } from './components/WeddingRingsIcon';
 
 export default function App() {
   const [stage, setStage] = useState<AppStage>('intro');
@@ -156,7 +157,7 @@ export default function App() {
                     {/* Dynamic Icon based on UserType */}
                     {userType === 'child' && <Baby size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
                     {userType === 'youth' && <Leaf size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
-                    {userType === 'adult' && <Link size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
+                    {userType === 'adult' && <WeddingRingsIcon size={28} strokeWidth={1.5} className="text-primary/40 mb-1" />}
                     {userType === 'priest' && <Church size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
                     {userType === 'general' && <Scroll size={28} className="text-parchment/60 mb-1" strokeWidth={1.5} />}
                     {/* Fallback */}
