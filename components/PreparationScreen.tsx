@@ -1,5 +1,6 @@
 import React from 'react';
 import { Flame, ArrowLeft } from 'lucide-react';
+import { SantaCaronaSignature } from './SantaCaronaSignature';
 
 interface PreparationScreenProps {
   onComplete: () => void;
@@ -69,9 +70,7 @@ export const PreparationScreen: React.FC<PreparationScreenProps> = ({ onComplete
         >
           <span>AMÉM</span>
         </button>
-        <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans text-center">
-            Uma iniciativa Santa Carona
-        </p>
+        <SantaCaronaSignature />
       </div>
 
     </div>

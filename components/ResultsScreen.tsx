@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Copy, Check, RotateCcw, BookOpen, ArrowLeft, ScrollText, Diamond } from 'lucide-react';
 import { PrayerModal } from './PrayerModal';
 import { AdBanner } from './AdBanner';
+import { SantaCaronaSignature } from './SantaCaronaSignature';
 
 interface ResultsScreenProps {
   accusedSins: string[];
@@ -113,9 +114,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
             </button>
         </div>
         
-        <p className="text-[10px] text-parchment-dim/30 font-sans tracking-widest uppercase text-center mt-2">
-            Uma iniciativa Santa Carona
-        </p>
+        <SantaCaronaSignature />
       </footer>
 
       <PrayerModal 

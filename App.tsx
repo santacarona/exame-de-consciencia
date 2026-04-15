@@ -9,6 +9,7 @@ import { ConfessionGuideScreen } from './components/ConfessionGuideScreen';
 import { UserType, AppStage, Question } from './types';
 import { YOUTH_QUESTIONS, ADULT_QUESTIONS, PRIEST_QUESTIONS, CHILD_QUESTIONS, GENERAL_CONFESSION_QUESTIONS } from './constants';
 import { Undo2, X, Church, Check, X as XIcon, Briefcase, Leaf, Baby, Scroll } from 'lucide-react';
+import { SantaCaronaSignature } from './components/SantaCaronaSignature';
 
 export default function App() {
   const [stage, setStage] = useState<AppStage>('intro');
@@ -221,9 +222,7 @@ export default function App() {
                     <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
                         Fonte: {getSourceText()}
                     </p>
-                    <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
-                        Uma iniciativa Santa Carona
-                    </p>
+                    <SantaCaronaSignature />
                 </div>
             </footer>
           </div>

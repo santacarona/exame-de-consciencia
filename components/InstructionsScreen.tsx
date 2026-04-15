@@ -7,6 +7,7 @@ import {
   Brain
 } from 'lucide-react';
 import { AdBanner } from './AdBanner';
+import { SantaCaronaSignature } from './SantaCaronaSignature';
 
 interface InstructionsScreenProps {
   onBack: () => void;
@@ -122,9 +123,7 @@ export const InstructionsScreen: React.FC<InstructionsScreenProps> = ({ onBack }
           </span>
         </button>
         
-        <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans text-center">
-            Uma iniciativa Santa Carona
-        </p>
+        <SantaCaronaSignature />
       </footer>
     </div>
   );

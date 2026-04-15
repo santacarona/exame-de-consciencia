@@ -2,6 +2,7 @@ import React from 'react';
 import { UserType } from '../types';
 import { Briefcase, Leaf, Church, ChevronRight, Baby, Scroll } from 'lucide-react';
 import { AdBanner } from './AdBanner';
+import { SantaCaronaSignature } from './SantaCaronaSignature';
 
 interface IntroSelectionProps {
   onSelect: (type: UserType) => void;
@@ -139,9 +140,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
         </div>
 
         <footer className="w-full py-3 flex items-center justify-center mt-2">
-          <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
-              Uma iniciativa Santa Carona
-          </p>
+          <SantaCaronaSignature />
         </footer>
 
       </main>
