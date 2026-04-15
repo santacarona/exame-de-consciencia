@@ -80,7 +80,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center w-full h-full pointer-events-none perspective-1000">
+    <div className="absolute inset-x-4 inset-y-0 flex items-center justify-center pointer-events-none">
       <motion.div
         style={{ x, rotate }}
         animate={{ opacity: isExiting ? 0 : 1 }}
@@ -90,7 +90,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
         dragElastic={1}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 40 }}
         onDragEnd={handleDragEnd}
-        className="pointer-events-auto glass-panel relative w-full max-w-sm aspect-[4/5] max-h-[min(460px,56vh)] rounded-2xl p-6 flex flex-col items-center justify-between group border border-white/5 cursor-grab active:cursor-grabbing"
+        className="pointer-events-auto glass-panel relative w-full max-w-sm h-[min(420px,calc(100vh-290px))] rounded-2xl p-6 flex flex-col items-center justify-between group border border-white/5 cursor-grab active:cursor-grabbing"
       >
         {/* Inner Border Decoration */}
         <div className="absolute inset-3 border border-primary/10 rounded-xl pointer-events-none"></div>
