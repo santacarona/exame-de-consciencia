@@ -58,6 +58,8 @@ Webapp de exame de consciência para preparação à confissão católica. Criad
 ├── index.tsx                # Entry point React
 ├── index.html               # HTML base + config Tailwind + importmap ESM
 ├── vite.config.ts           # Config Vite
+├── public/
+│   └── favicon.svg          # Cruz laranja (#FF4F00)
 └── components/
     ├── IntroSelection.tsx        # Tela inicial: seleção de perfil
     ├── InstructionsScreen.tsx    # Como usar o app
@@ -67,7 +69,8 @@ Webapp de exame de consciência para preparação à confissão católica. Criad
     ├── ResultsScreen.tsx         # Lista de pecados acusados ao final
     ├── ConfirmationModal.tsx     # Modal de confirmação de saída
     ├── PrayerModal.tsx           # Modal de oração
-    └── AdBanner.tsx              # Banner Google AdSense (320×50)
+    ├── AdBanner.tsx              # Banner Google AdSense (320×50)
+    └── SantaCaronaSignature.tsx  # Assinatura "Uma iniciativa + logo SC"
 ```
 
 ---
@@ -95,7 +98,7 @@ intro → preparation → exam → results
 |-------|-------|---------------------|
 | `child` | Baby | opusdei.org |
 | `youth` | Leaf | opusdei.org |
-| `adult` | Shield | opusdei.org |
+| `adult` | Briefcase | opusdei.org |
 | `priest` | Church | presbiteros.org.br |
 | `general` | Scroll | padrepauloricardo.org |
 
@@ -127,15 +130,30 @@ intro → preparation → exam → results
 
 ## Google AdSense
 
-Estrutura já implementada em `components/AdBanner.tsx`. Banners posicionados em:
+**Publisher ID:** `ca-pub-2560972696133896`  
+**Status:** Script ativo no `index.html`. Aguardando aprovação do domínio `santacarona.com.br` pelo Google.
+
+Banners posicionados em:
 - Tela inicial (`IntroSelection`) — abaixo dos cards de perfil
 - Como funciona (`InstructionsScreen`) — footer, acima do botão
 - Guia de confissão (`ConfessionGuideScreen`) — footer, acima do botão
 - Resultados (`ResultsScreen`) — entre a lista e os botões de ação
 
-**Para ativar quando a conta AdSense for aprovada:**
-1. Em `index.html`: descomentar o `<script>` do AdSense e substituir o Publisher ID
-2. Em `components/AdBanner.tsx`: substituir `AD_CLIENT` e `AD_SLOT` pelos valores reais
+**Para ativar após aprovação:**
+1. Criar blocos de anúncio no painel AdSense → obter os **Ad Slot IDs**
+2. Em `components/AdBanner.tsx`: substituir `AD_SLOT` pelo valor real (linha 18)
+3. O `AD_CLIENT` já está correto (`ca-pub-2560972696133896`)
+4. Fazer build + push → deploy automático
+
+---
+
+## Assinatura Santa Carona
+
+O componente `SantaCaronaSignature` exibe "Uma iniciativa" + logo branca do Santa Carona em todas as telas. A logo é carregada de:
+```
+https://santacarona.com.br/wp-content/uploads/2024/03/LOGO-SC-BRANCA.png
+```
+Tamanho atual: `w-[55%] max-w-[130px]`, opacidade `60%`.
 
 ---
 
@@ -163,4 +181,5 @@ git push
 - O app é **totalmente client-side**, sem backend. Nenhum dado sai do dispositivo do usuário.
 - `sessionStorage` armazena a lista de pecados apenas durante a sessão — apagado ao fechar a aba.
 - A função "Copiar" envia o texto apenas para a área de transferência local.
+- Favicon: cruz SVG laranja em `public/favicon.svg`.
 - O `README.md` menciona `GEMINI_API_KEY` — herança do template do AI Studio, ignorar.
