@@ -18,6 +18,20 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
 
         {/* Hero Title Section */}
         <div className="mb-3 text-center relative w-full">
+          {/* Cruz cristã */}
+          <svg
+            width="32" height="40"
+            viewBox="0 0 32 40"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            className="text-primary mx-auto mb-3 opacity-80"
+          >
+            <line x1="16" y1="2" x2="16" y2="38" />
+            <line x1="5"  y1="12" x2="27" y2="12" />
+          </svg>
+
           <h1 className="text-parchment text-[32px] font-serif font-normal leading-[1.15] tracking-wide text-glow mb-2">
             Exame de<br/><span className="text-primary">Consciência</span>
           </h1>
