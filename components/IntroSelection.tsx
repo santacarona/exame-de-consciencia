@@ -22,7 +22,7 @@ const PROFILES: ProfileOption[] = [
   { type: 'child', icon: Baby, title: 'Criança', description: 'Pequenos passos na fé.' },
   { type: 'youth', icon: Leaf, title: 'Jovem', description: 'Para o início da jornada.' },
   { type: 'adult', icon: Briefcase, title: 'Adulto', description: 'Batalhas da maturidade.' },
-  { type: 'seminarian', icon: GraduationCap, title: 'Seminarista', description: 'Formação e discernimento vocacional.' },
+  { type: 'seminarian', icon: GraduationCap, title: 'Seminarista', description: 'Formação e vocação.' },
   { type: 'priest', icon: Church, title: 'Sacerdote', description: 'Vocação e serviço ao altar.' },
   { type: 'general', icon: Scroll, title: 'Confissão Geral', description: 'Renovação completa da fé.', tag: 'COMPLETA' },
 ];
