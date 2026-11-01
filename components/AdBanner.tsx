@@ -5,17 +5,11 @@ interface AdBannerProps {
 }
 
 /**
- * Google AdSense — Banner Mobile (320×50)
- *
- * Para ativar os anúncios reais:
- *  1. No index.html, descomente a tag <script> do AdSense e substitua o Publisher ID.
- *  2. Substitua os valores abaixo:
- *     - data-ad-client → seu Publisher ID  (ex: "ca-pub-1234567890123456")
- *     - data-ad-slot   → ID do bloco      (ex: "9876543210")
+ * Google AdSense — Bloco "exame-consciencia-banner-responsivo"
  */
 
 const AD_CLIENT = 'ca-pub-2560972696133896';
-const AD_SLOT   = 'XXXXXXXXXX';             // ← substitua pelo ID do bloco de anúncio
+const AD_SLOT   = '6174890984';
 
 export const AdBanner: React.FC<AdBannerProps> = ({ className = '' }) => {
   const adRef = useRef<HTMLModElement>(null);
@@ -40,10 +34,11 @@ export const AdBanner: React.FC<AdBannerProps> = ({ className = '' }) => {
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={{ display: 'inline-block', width: '320px', height: '50px' }}
+        style={{ display: 'block', width: '100%' }}
         data-ad-client={AD_CLIENT}
         data-ad-slot={AD_SLOT}
-        data-ad-format="fixed"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
       />
     </div>
   );
