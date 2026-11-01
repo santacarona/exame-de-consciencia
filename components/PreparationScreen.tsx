@@ -1,6 +1,7 @@
 import React from 'react';
-import { Flame, ArrowLeft } from 'lucide-react';
+import { Flame } from 'lucide-react';
 import { SantaCaronaSignature } from './SantaCaronaSignature';
+import { AppHeader } from './AppHeader';
 
 interface PreparationScreenProps {
   onComplete: () => void;
@@ -9,64 +10,43 @@ interface PreparationScreenProps {
 
 export const PreparationScreen: React.FC<PreparationScreenProps> = ({ onComplete, onBack }) => {
   return (
-    <div className="relative z-10 flex flex-col h-full w-full text-parchment font-display selection:bg-primary selection:text-white overflow-hidden animate-in fade-in duration-700">
-      
-      {/* Header */}
-      <header className="relative z-10 flex items-center justify-between p-4 pb-2 w-full shrink-0">
-        <button 
-          onClick={onBack}
-          aria-label="Voltar" 
-          className={`text-parchment flex w-12 h-12 shrink-0 items-center justify-center hover:bg-parchment/10 rounded-full transition-colors ${!onBack ? 'invisible' : ''}`}
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <h2 className="text-parchment text-sm font-bold uppercase tracking-[0.15em] flex-1 text-center opacity-80">
-          Oração Preparatória
-        </h2>
-        <div className="w-12 h-12 shrink-0"></div> 
-      </header>
+    <div className="relative z-10 flex flex-col h-full w-full bg-canvas text-ink font-sans overflow-hidden animate-in fade-in duration-700">
+
+      {onBack ? (
+        <AppHeader label="Oração Preparatória" onBack={onBack} />
+      ) : (
+        <div className="h-14 shrink-0 flex items-center justify-center">
+          <span className="text-[12px] uppercase tracking-[0.18em] text-ink-muted-80">Oração Preparatória</span>
+        </div>
+      )}
 
       {/* Main Content */}
       <main className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-4 w-full max-w-md mx-auto overflow-y-auto scroll-smooth">
-        
-        {/* Icon Section */}
-        <div className="relative flex items-center justify-center mb-8 shrink-0">
-          {/* Glow Effect */}
-          <div className="absolute w-20 h-20 bg-primary/30 rounded-full blur-3xl animate-pulse"></div>
-          
-          {/* Flame Icon */}
-          <Flame 
-            size={64} 
-            strokeWidth={1}
-            className="text-primary animate-pulse drop-shadow-[0_0_15px_rgba(139,69,158,0.5)]" 
-          />
-        </div>
 
-        {/* Prayer Text Section */}
-        <div className="relative max-w-sm mx-auto">
-          <span className="absolute -top-6 -left-2 text-5xl text-primary font-serif leading-none opacity-30 select-none">“</span>
-          
-          <div className="px-3">
-            <p className="text-parchment text-[17px] leading-relaxed text-justify font-normal font-serif opacity-90">
-              Meu bom Deus e Salvador, Pai de misericórdia, eis-me aqui prostrado aos vossos pés, cheio de confusão e de remorsos, qual outro filho pródigo que volta arrependido à casa paterna. 
-            </p>
-            <p className="text-parchment text-[17px] leading-relaxed text-justify font-normal font-serif opacity-90 mt-3">
-              Não mereço perdão, porque desgostei demasiadamente a vossa bondade infinita. Mas sei que não olhais para os meus pecados senão para perdoá-los, como Pai misericordioso que sois.
-            </p>
-            <p className="text-parchment text-[17px] leading-relaxed text-justify font-normal font-serif opacity-90 mt-3">
-              Pelos méritos inefáveis do vosso Filho, crucificado e morto por meu amor, pelos méritos do seu Preciosíssimo Sangue, pelas suas lágrimas e agonia, tende piedade de mim. Dai-me luz para conhecer os meus pecados; sincero arrependimento para os aborrecer; firme propósito para nunca mais os cometer; ânimo para os acusar e para cumprir com a devida penitência.
-            </p>
-          </div>
+        <Flame
+          size={52}
+          strokeWidth={1.25}
+          className="text-primary mb-9 shrink-0 drop-shadow-[3px_5px_30px_rgba(0,0,0,0.22)]"
+        />
 
-          <span className="absolute -bottom-8 -right-2 text-5xl text-primary font-serif leading-none opacity-30 select-none">”</span>
+        <div className="max-w-sm mx-auto flex flex-col gap-4">
+          <p className="text-ink-muted-80 text-[17px] leading-[1.47] tracking-[-0.374px] text-left font-sans">
+            Meu bom Deus e Salvador, Pai de misericórdia, eis-me aqui prostrado aos vossos pés, cheio de confusão e de remorsos, qual outro filho pródigo que volta arrependido à casa paterna.
+          </p>
+          <p className="text-ink-muted-80 text-[17px] leading-[1.47] tracking-[-0.374px] text-left font-sans">
+            Não mereço perdão, porque desgostei demasiadamente a vossa bondade infinita. Mas sei que não olhais para os meus pecados senão para perdoá-los, como Pai misericordioso que sois.
+          </p>
+          <p className="text-ink-muted-80 text-[17px] leading-[1.47] tracking-[-0.374px] text-left font-sans">
+            Pelos méritos inefáveis do vosso Filho, crucificado e morto por meu amor, pelos méritos do seu Preciosíssimo Sangue, pelas suas lágrimas e agonia, tende piedade de mim. Dai-me luz para conhecer os meus pecados; sincero arrependimento para os aborrecer; firme propósito para nunca mais os cometer; ânimo para os acusar e para cumprir com a devida penitência.
+          </p>
         </div>
       </main>
 
-      {/* Footer Button */}
+      {/* Footer */}
       <div className="relative z-10 w-full px-6 pb-6 pt-4 max-w-md mx-auto shrink-0 flex flex-col gap-4">
-        <button 
+        <button
           onClick={onComplete}
-          className="w-full flex items-center justify-center h-14 bg-primary hover:brightness-110 active:bg-primary-dim text-parchment text-lg font-bold tracking-[0.1em] rounded-lg shadow-[0_4px_14px_0_rgba(139,69,158,0.39)] transition-all duration-300 transform active:scale-[0.98]"
+          className="w-full flex items-center justify-center h-14 bg-primary text-white text-[17px] font-semibold tracking-[0.04em] rounded-pill transition-transform duration-150 active:scale-95"
         >
           <span>AMÉM</span>
         </button>

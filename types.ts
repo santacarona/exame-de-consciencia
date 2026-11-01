@@ -1,5 +1,5 @@
 
-export type UserType = 'child' | 'youth' | 'adult' | 'priest' | 'general';
+export type UserType = 'child' | 'youth' | 'adult' | 'priest' | 'seminarian' | 'general';
 
 export interface Question {
   id: number;

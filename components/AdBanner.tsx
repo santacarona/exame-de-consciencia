@@ -34,7 +34,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({ className = '' }) => {
 
   return (
     <div className={`w-full flex flex-col items-center gap-1 ${className}`}>
-      <span className="text-[9px] text-parchment/15 uppercase tracking-[0.2em] font-sans select-none">
+      <span className="text-[10px] text-ink-muted-48 opacity-50 uppercase tracking-[0.18em] font-sans select-none">
         Publicidade
       </span>
       <ins

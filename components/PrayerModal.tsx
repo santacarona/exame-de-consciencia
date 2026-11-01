@@ -11,34 +11,30 @@ export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-6 animate-in fade-in duration-200">
-      {/* Backdrop with heavy blur matching ConfirmationModal */}
-      <div 
-        className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+      <div
+        className="absolute inset-0 bg-black/70 backdrop-blur-sm"
         onClick={onClose}
       />
-      
-      {/* Modal Content */}
-      <div className="relative w-full max-w-sm bg-obsidian/95 border border-primary/20 rounded-2xl shadow-[0_0_50px_rgba(0,0,0,0.9)] p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300 backdrop-blur-xl">
 
-        <div className="bg-primary/10 p-4 rounded-full mb-5 border border-primary/20">
-          <BookOpen className="w-8 h-8 text-primary" />
+      <div className="relative w-full max-w-sm bg-surface-pearl border border-hairline rounded-lg p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+
+        <div className="mb-5">
+          <BookOpen className="w-7 h-7 text-primary" strokeWidth={1.5} />
         </div>
 
-        <h3 className="text-xl font-serif font-bold text-parchment mb-6">
+        <h3 className="text-[20px] font-semibold tracking-[-0.2px] text-ink mb-6 font-sans">
           Ato de Contrição
         </h3>
 
-        <div className="relative mb-8">
-          <p className="text-parchment-dim text-base leading-relaxed font-serif text-justify">
-            "Meu Deus, porque sois infinitamente bom e Vos amo de todo o meu coração, pesa-me de Vos ter ofendido e, com o auxílio da Vossa divina graça, proponho firmemente emendar-me e nunca mais Vos tornar a ofender. Peço e espero o perdão das minhas culpas pela Vossa infinita misericórdia."
-          </p>
-        </div>
+        <p className="text-ink-muted-80 text-[15px] leading-[1.47] font-sans mb-8">
+          "Meu Deus, porque sois infinitamente bom e Vos amo de todo o meu coração, pesa-me de Vos ter ofendido e, com o auxílio da Vossa divina graça, proponho firmemente emendar-me e nunca mais Vos tornar a ofender. Peço e espero o perdão das minhas culpas pela Vossa infinita misericórdia."
+        </p>
 
         <button
-            onClick={onClose}
-            className="w-full py-3 px-4 rounded-lg font-sans font-bold text-sm bg-primary text-obsidian hover:bg-primary-dim hover:text-parchment shadow-lg transition-all active:scale-95"
+          onClick={onClose}
+          className="w-full py-3 px-4 rounded-pill font-sans font-semibold text-[14px] bg-primary text-white transition-transform active:scale-95"
         >
-            Amém
+          Amém
         </button>
       </div>
     </div>

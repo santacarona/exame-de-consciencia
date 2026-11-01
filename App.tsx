@@ -7,8 +7,8 @@ import { ResultsScreen } from './components/ResultsScreen';
 import { ConfirmationModal } from './components/ConfirmationModal';
 import { ConfessionGuideScreen } from './components/ConfessionGuideScreen';
 import { UserType, AppStage, Question } from './types';
-import { YOUTH_QUESTIONS, ADULT_QUESTIONS, PRIEST_QUESTIONS, CHILD_QUESTIONS, GENERAL_CONFESSION_QUESTIONS } from './constants';
-import { Undo2, X, Church, Check, X as XIcon, Briefcase, Leaf, Baby, Scroll } from 'lucide-react';
+import { YOUTH_QUESTIONS, ADULT_QUESTIONS, PRIEST_QUESTIONS, CHILD_QUESTIONS, SEMINARIAN_QUESTIONS, GENERAL_CONFESSION_QUESTIONS } from './constants';
+import { Undo2, X, Church, Check, X as XIcon, Briefcase, Leaf, Baby, Scroll, GraduationCap } from 'lucide-react';
 import { SantaCaronaSignature } from './components/SantaCaronaSignature';
 
 export default function App() {
@@ -36,6 +36,7 @@ export default function App() {
     if (type === 'youth') q = YOUTH_QUESTIONS;
     else if (type === 'priest') q = PRIEST_QUESTIONS;
     else if (type === 'child') q = CHILD_QUESTIONS;
+    else if (type === 'seminarian') q = SEMINARIAN_QUESTIONS;
     else if (type === 'general') q = GENERAL_CONFESSION_QUESTIONS;
 
     setQuestions(q);
@@ -96,6 +97,8 @@ export default function App() {
             return 'presbiteros.org.br';
         case 'general':
             return 'padrepauloricardo.org';
+        case 'seminarian':
+            return 'Pe. Dylan James';
         case 'child':
         case 'youth':
         case 'adult':
@@ -105,10 +108,7 @@ export default function App() {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-background-dark text-parchment overflow-hidden font-sans selection:bg-primary selection:text-obsidian">
-
-      {/* Background Texture */}
-      <div className="absolute inset-0 z-0 bg-noise opacity-10 pointer-events-none mix-blend-overlay"></div>
+    <div className="fixed inset-0 w-full h-full bg-canvas text-ink overflow-hidden font-sans selection:bg-primary selection:text-white">
 
       {/* Main Content Container */}
       <div className="relative z-10 w-full h-full max-w-lg mx-auto flex flex-col">
@@ -143,45 +143,46 @@ export default function App() {
         {stage === 'exam' && questions.length > 0 && (
           <div className="flex flex-col h-full w-full">
              
-            {/* Header (Stitch Design) */}
+            {/* Header */}
             <header className="relative z-10 w-full px-4 pt-4 pb-2 flex items-center justify-between shrink-0">
-                <button 
+                <button
                     onClick={handleGoBack}
                     disabled={currentQuestionIndex === 0}
-                    className={`flex items-center justify-center w-12 h-12 text-accent-light hover:text-white transition-colors rounded-full active:bg-white/5 ${currentQuestionIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                    className={`flex items-center justify-center w-11 h-11 rounded-pill bg-chip-translucent text-ink transition-transform active:scale-95 ${currentQuestionIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
                 >
-                    <Undo2 size={28} strokeWidth={1.5} />
+                    <Undo2 size={20} strokeWidth={1.5} />
                 </button>
-                
+
                 <div className="flex flex-col items-center">
                     {/* Dynamic Icon based on UserType */}
-                    {userType === 'child' && <Baby size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
-                    {userType === 'youth' && <Leaf size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
-                    {userType === 'adult' && <Briefcase size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
-                    {userType === 'priest' && <Church size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
-                    {userType === 'general' && <Scroll size={28} className="text-parchment/60 mb-1" strokeWidth={1.5} />}
+                    {userType === 'child' && <Baby size={22} className="text-primary/50" strokeWidth={1.5} />}
+                    {userType === 'youth' && <Leaf size={22} className="text-primary/50" strokeWidth={1.5} />}
+                    {userType === 'adult' && <Briefcase size={22} className="text-primary/50" strokeWidth={1.5} />}
+                    {userType === 'priest' && <Church size={22} className="text-primary/50" strokeWidth={1.5} />}
+                    {userType === 'seminarian' && <GraduationCap size={22} className="text-primary/50" strokeWidth={1.5} />}
+                    {userType === 'general' && <Scroll size={22} className="text-ink-muted-48" strokeWidth={1.5} />}
                     {/* Fallback */}
-                    {!userType && <Church size={28} className="text-primary/40 mb-1" strokeWidth={1.5} />}
+                    {!userType && <Church size={22} className="text-primary/50" strokeWidth={1.5} />}
                 </div>
 
-                <button 
+                <button
                     onClick={() => setShowExitModal(true)}
-                    className="flex items-center justify-center w-12 h-12 text-parchment/60 hover:text-parchment transition-colors rounded-full active:bg-white/5"
+                    className="flex items-center justify-center w-11 h-11 rounded-pill bg-chip-translucent text-ink transition-transform active:scale-95"
                 >
-                    <X size={28} strokeWidth={1.5} />
+                    <X size={20} strokeWidth={1.5} />
                 </button>
             </header>
 
-            {/* Counter (Stitch Design) */}
+            {/* Counter */}
             <div className="relative z-10 w-full text-center pb-2 shrink-0">
-                <p className="font-sans text-accent-light text-sm font-bold tracking-[0.2em] opacity-80 uppercase">
+                <p className="font-sans text-ink-muted-48 text-[12px] font-normal tracking-[0.18em] uppercase">
                     Questão {currentQuestionIndex + 1} de {questions.length}
                 </p>
             </div>
 
             {/* Main Card Area */}
             <main className="relative z-10 flex-1 w-full flex items-center justify-center px-6 py-2 overflow-visible min-h-0">
-                <ExamCard 
+                <ExamCard
                     ref={cardRef}
                     key={questions[currentQuestionIndex].id}
                     question={questions[currentQuestionIndex]}
@@ -191,35 +192,35 @@ export default function App() {
                 />
             </main>
 
-            {/* Footer Actions (Stitch Design) */}
+            {/* Footer Actions */}
             <footer className="relative z-10 w-full px-8 pb-4 pt-2 shrink-0 flex flex-col items-center">
                 <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-3">
                     {/* Nego Button - Triggers Left Swipe */}
-                    <div 
+                    <div
                         className="flex flex-col items-center gap-2 group cursor-pointer"
                         onClick={() => cardRef.current?.swipe('left')}
                     >
-                        <button className="flex items-center justify-center w-16 h-16 rounded-full glass-panel border-parchment/10 text-parchment/40 group-hover:text-parchment group-hover:border-deny/50 group-hover:bg-deny/20 transition-all duration-300 shadow-lg active:scale-95">
-                            <XIcon size={32} strokeWidth={1.5} />
+                        <button className="flex items-center justify-center w-16 h-16 rounded-pill bg-surface-pearl border border-hairline text-ink-muted-80 transition-transform active:scale-95">
+                            <XIcon size={28} strokeWidth={1.5} />
                         </button>
-                        <span className="text-xs font-sans tracking-[0.15em] text-parchment/40 font-bold group-hover:text-parchment/70 transition-colors">NEGO</span>
+                        <span className="text-[11px] font-sans tracking-[0.15em] text-ink-muted-48 font-semibold">NEGO</span>
                     </div>
 
                     {/* Confesso Button - Triggers Right Swipe */}
-                    <div 
+                    <div
                         className="flex flex-col items-center gap-2 group cursor-pointer"
                         onClick={() => cardRef.current?.swipe('right')}
                     >
-                        <button className="flex items-center justify-center w-16 h-16 rounded-full glass-panel border-parchment/10 text-parchment/40 group-hover:text-confess group-hover:border-confess/50 group-hover:bg-confess/20 transition-all duration-300 shadow-lg active:scale-95">
-                            <Check size={32} strokeWidth={1.5} />
+                        <button className="flex items-center justify-center w-16 h-16 rounded-pill bg-primary text-white transition-transform active:scale-95">
+                            <Check size={28} strokeWidth={1.5} />
                         </button>
-                        <span className="text-xs font-sans tracking-[0.15em] text-parchment/40 font-bold group-hover:text-primary transition-colors">CONFESSO</span>
+                        <span className="text-[11px] font-sans tracking-[0.15em] text-primary font-semibold">CONFESSO</span>
                     </div>
                 </div>
 
                 {/* Exam Footer Info */}
                 <div className="text-center space-y-1">
-                    <p className="text-[10px] text-parchment/20 uppercase tracking-widest font-sans">
+                    <p className="text-[10px] text-ink-muted-48 opacity-70 uppercase tracking-widest font-sans">
                         Fonte: {getSourceText()}
                     </p>
                     <SantaCaronaSignature />

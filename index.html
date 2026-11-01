@@ -14,53 +14,41 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2560972696133896" crossorigin="anonymous"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+      // Design tokens — Santa Carona design kit (dark-mode-first, single orange accent)
       tailwind.config = {
         darkMode: "class",
         theme: {
           extend: {
             colors: {
                 "primary": "#FF4F00",
-                "primary-dim": "#CC3E00",
-                "accent-light": "#D4C5A9",
-                "background-light": "#f8f7f6",
-                "background-dark": "#0D0D0D",
-                "parchment": "#F0EAD6",
-                "parchment-dim": "#D4C5A9",
-                "obsidian": "#0D0D0D",
-                "obsidian-light": "#161616",
-                "confess": "#7A1C1C",
-                "deny": "#4A4A4A",
-                "glass-border": "rgba(255, 79, 0, 0.2)",
-
-                // Mapeamento de compatibilidade
-                slate: {
-                    500: '#D4C5A9',
-                    800: '#161616',
-                    900: '#0D0D0D',
-                    950: '#080808',
-                },
-                amber: {
-                    100: '#F0EAD6',
-                    500: '#FF4F00',
-                    600: '#CC3E00',
-                    700: '#A33200',
-                    900: '#161616',
-                }
+                "primary-focus": "#FF4F00",
+                "ink": "#FFFFFF",
+                "body-muted": "#A8A8AC",
+                "ink-muted-80": "#E5E5E7",
+                "ink-muted-48": "#8A8A8E",
+                "divider-soft": "#2C2C2E",
+                "hairline": "#38383A",
+                "canvas": "#000000",
+                "canvas-parchment": "#1C1C1E",
+                "surface-pearl": "#141416",
+                "surface-tile-1": "#272729",
+                "surface-tile-2": "#2A2A2C",
+                "surface-tile-3": "#252527",
+                "chip-translucent": "rgba(58, 58, 60, 0.64)",
             },
             fontFamily: {
-                "display": ["EB Garamond", "Georgia", "serif"],
-                "serif": ["EB Garamond", "Georgia", "serif"],
-                "sans": ["Inter", "sans-serif"],
+                "display": ["Inter", "system-ui", "-apple-system", "sans-serif"],
+                "sans": ["Inter", "system-ui", "-apple-system", "sans-serif"],
             },
-            borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+            borderRadius: { "none": "0px", "xs": "5px", "sm": "8px", "md": "11px", "lg": "18px", "pill": "9999px" },
             boxShadow: {
-                'glow': '0 0 25px rgba(255, 79, 0, 0.15)',
-                'card-glow': '0 0 20px -5px rgba(255, 79, 0, 0.2)',
+                // The single shadow in the system — reserved for the sacred symbol anchoring each screen, never UI chrome.
+                "product": "3px 5px 30px rgba(0, 0, 0, 0.22)",
             }
           },
         },
@@ -69,29 +57,14 @@
     <style>
       /* Global Reset & Base */
       body {
-        background-color: #0D0D0D;
-        color: #F0EAD6;
-        font-family: 'Inter', sans-serif;
+        background-color: #000000;
+        color: #FFFFFF;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        font-feature-settings: "ss03";
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         overflow: hidden;
         min-height: 100dvh;
-      }
-
-      .glass-panel {
-          background: rgba(22, 22, 22, 0.75);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 79, 0, 0.15);
-          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
-      }
-
-      .bg-noise {
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-      }
-
-      .text-glow {
-          text-shadow: 0 0 24px rgba(255, 79, 0, 0.35), 0 0 8px rgba(255, 79, 0, 0.15);
       }
 
       /* Custom Scrollbar */
@@ -99,10 +72,10 @@
         width: 4px;
       }
       ::-webkit-scrollbar-track {
-        background: rgba(13, 13, 13, 0.8);
+        background: rgba(0, 0, 0, 0.8);
       }
       ::-webkit-scrollbar-thumb {
-        background: #CC3E00;
+        background: #38383A;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
@@ -121,7 +94,7 @@
 }
 </script>
 </head>
-  <body class="bg-background-dark font-sans antialiased selection:bg-primary selection:text-obsidian overflow-x-hidden text-parchment">
+  <body class="bg-canvas font-sans antialiased selection:bg-primary selection:text-white overflow-x-hidden text-ink">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

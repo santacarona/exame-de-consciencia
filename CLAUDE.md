@@ -100,31 +100,37 @@ intro → preparation → exam → results
 | `youth` | Leaf | opusdei.org |
 | `adult` | Briefcase | opusdei.org |
 | `priest` | Church | presbiteros.org.br |
+| `seminarian` | GraduationCap | Pe. Dylan James, "An Examination of Conscience for Seminarians" (2005) |
 | `general` | Scroll | padrepauloricardo.org |
 
 ---
 
 ## Design System
 
-**Paleta de cores (definida no `index.html`):**
-- `primary` — `#FF4F00` (laranja Santa Carona)
-- `primary-dim` — `#CC3E00`
-- `accent-light` — `#D4C5A9`
-- `background-dark` / `obsidian` — `#0D0D0D`
-- `obsidian-light` — `#161616`
-- `parchment` — `#F0EAD6` (texto principal)
-- `parchment-dim` — `#D4C5A9`
-- `confess` — `#7A1C1C` (bordô escuro)
-- `deny` — `#4A4A4A` (cinza chumbo)
+Redesenhado a partir do **Santa Carona design kit** (photography-first, dark-mode-first, laranja único). Sem "produto" literal, o app reinterpreta o símbolo sagrado de cada tela (cruz, chama, livro) como o elemento que recebe a única sombra do sistema.
 
-**Classes utilitárias customizadas (CSS global no `index.html`):**
-- `.glass-panel` — painel com efeito vidro (backdrop-filter + border translúcida)
-- `.bg-noise` — textura de ruído SVG inline
-- `.text-glow` — text-shadow laranja
+**Paleta de cores (definida no `index.html`, tema Tailwind):**
+- `primary` / `primary-focus` — `#FF4F00` (laranja Santa Carona — único acento interativo do app)
+- `ink` — `#FFFFFF` (texto principal)
+- `ink-muted-80` — `#E5E5E7` · `ink-muted-48` — `#8A8A8E` · `body-muted` — `#A8A8AC`
+- `canvas` — `#000000` (fundo padrão) · `canvas-parchment` — `#1C1C1E` (tela alternada: preparação, resultados)
+- `surface-pearl` — `#141416` (cards, modais, chips)
+- `surface-tile-1/2/3` — `#272729` / `#2A2A2C` / `#252527` (variações raras de tile claro)
+- `hairline` — `#38383A` (borda 1px dos cards) · `divider-soft` — `#2C2C2E`
+- `chip-translucent` — `rgba(58,58,60,0.64)` (botões circulares flutuantes, ex. voltar/fechar)
+
+**Border radius:** `none` 0 · `xs` 5px · `sm` 8px · `md` 11px · `lg` 18px (cards) · `pill` 9999px (botões de ação, a assinatura do sistema).
+
+**Sombra:** uma única — `shadow-product` (`3px 5px 30px rgba(0,0,0,0.22)`), aplicada só ao ícone/símbolo central de cada tela, nunca em cards ou botões.
 
 **Fontes:**
-- `font-sans` / `font-display` — Inter
-- `font-serif` — EB Garamond (Google Fonts) — usar sem itálico (`font-normal`)
+- `font-sans` / `font-display` — Inter (substituto open-source de SF Pro Display/Text, com `font-feature-settings: "ss03"` global pra aproximar o "a" arredondado)
+- Sem serif. Corpo de texto em 17px/400, títulos em 600 com tracking negativo (`-0.2px` a `-0.374px`). Peso 500 nunca é usado (escala: 300/400/600/700).
+
+**Componentes compartilhados:**
+- `components/AppHeader.tsx` — header padrão das telas secundárias (botão circular translúcido de voltar + label central em caps/tracking largo).
+
+Referência completa do kit (cores, tipografia, componentes, breakpoints) ficou fora do repo — pedir ao usuário se precisar reconsultar.
 
 ---
 

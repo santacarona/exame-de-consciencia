@@ -103,6 +103,115 @@ export const PRIEST_QUESTIONS: Question[] = [
     { id: 20, text: "Sou negligente ou apressado ao administrar os sacramentos aos moribundos? Omito a doutrina dos Novíssimos em minha pregação por medo ou mundanismo? Sou presunçoso a ponto de não pedir a perseverança final e esqueço-me de sufragar as almas dos fiéis defuntos?" }
 ];
 
+// Exame de consciência completo para seminaristas (versão condensada).
+// Adaptado de "An Examination of Conscience for Seminarians" (Pe. Dylan James, 2005).
+// A seção final com os Dez Mandamentos não foi incluída.
+//
+// Regra de redação: na primeira pessoa e no passado, para que a resposta natural seja
+// "Confesso" (cometi) ou "Nego" (não cometi). Perguntas próximas foram unidas com "ou":
+// basta ter cometido qualquer uma das faltas citadas para responder "Confesso".
+export const SEMINARIAN_QUESTIONS: Question[] = [
+    // Orientações iniciais
+    { id: 1, text: "Deixei de rezar as minhas orações?" },
+    { id: 2, text: "Deixei de ajudar ou de atender às necessidades dos meus colegas seminaristas?" },
+
+    // Soberba
+    { id: 3, text: "Julguei os outros em pensamento, em palavra ou em obra?" },
+    { id: 4, text: "Fiquei remoendo as falhas dos outros ou me coloquei acima deles, achando-me melhor?" },
+    { id: 5, text: "Recusei-me a admitir as minhas fraquezas ou que estava errado?" },
+    { id: 6, text: "Recusei-me a aceitar a ideia, o conselho ou a correção de outra pessoa, ou a aprender com os outros?" },
+    { id: 7, text: "Busquei coisas além do meu alcance?" },
+    { id: 8, text: "Odiei os outros ou guardei ressentimento nos meus pensamentos?" },
+    { id: 9, text: "Abusei do meu poder, impondo minha vontade, minhas preferências ou minhas opiniões àqueles que estão sob meus cuidados ou aos meus amigos?" },
+    { id: 10, text: "Fui insensível no modo como proclamei as verdades de Cristo?" },
+    { id: 11, text: "Fui arrogante ou tratei os outros com desprezo?" },
+    { id: 12, text: "Desprezei pessoas de outra raça, classe ou cultura?" },
+    { id: 13, text: "Faltei com o respeito ou a obediência devidos ao reitor, aos formadores, ao diretor espiritual ou aos professores, ou os critiquei em pensamento, em palavras ou em fofocas?" },
+    { id: 14, text: "Faltei com meus deveres para com minha família e meus pais, deixando de ligar, visitar, manter contato, dedicar-lhes tempo ou demonstrar preocupação com eles?" },
+    { id: 15, text: "Fui egoísta, intolerante ou pouco disposto a perdoar minha família, ou a escandalizei com mau exemplo?" },
+    { id: 16, text: "Negligenciei usar os talentos que Deus me deu?" },
+    { id: 17, text: "Evitei lidar com pessoas e situações difíceis, ou deixei de testemunhar os ensinamentos mais exigentes de Cristo, em matéria de moral?" },
+
+    // Vaidade
+    { id: 18, text: "Agi, brinquei ou falei mais para impressionar os outros do que para fazer a vontade de Deus ou ajudar os outros?" },
+    { id: 19, text: "Meu humor ou minha conversa foram egocêntricos, indelicados, insensíveis ou ofensivos?" },
+    { id: 20, text: "Deixei de escutar os outros?" },
+    { id: 21, text: "Menti ou exagerei, seja para parecer melhor, para prejudicar a reputação de outro ou para evitar trabalho?" },
+    { id: 22, text: "Gastei tempo e dinheiro em excesso com roupas e aparência, ou me exercitei mais por vaidade do que por saúde?" },
+    { id: 23, text: "Busquei reconhecimento ou promoção para a minha própria glória, ou fiquei ressentido com a minha posição humilde ou com o papel que Cristo me pede para cumprir?" },
+
+    // Luxúria
+    { id: 24, text: "Olhei para outras pessoas de modo impuro ou as vi como meros objetos sexuais, e não como pessoas a serem amadas?" },
+    { id: 25, text: "Acolhi pensamentos impuros?" },
+    { id: 26, text: "Usei pornografia, na internet, na TV ou de outro modo?" },
+    { id: 27, text: "Flertei, dancei de modo impuro ou brinquei com os sentimentos de outra pessoa?" },
+    { id: 28, text: "Deixei de guardar meu coração contra afeições por determinadas mulheres, comportei-me de modo a despertar afeições românticas ou passei tempo a sós com uma mulher de modo imprudente?" },
+    { id: 29, text: "Cometi atos impuros, sozinho ou com outra pessoa, inclusive toques impuros ou impureza em abraços?" },
+    { id: 30, text: "Minhas piadas, minha conversa ou meus elogios foram impuros, ou ouvi e tolerei piadas e conversas impuras ou grosseiras?" },
+    { id: 31, text: "Incentivei, aprovei ou ajudei os atos impuros de outros?" },
+    { id: 32, text: "Deixei de testemunhar os ensinamentos de Cristo sobre a santa pureza?" },
+    { id: 33, text: "Recebi a Santa Comunhão em estado de pecado grave, sem procurar antes a Confissão?" },
+    { id: 34, text: "Meu modo de vestir foi ocasião de pecado para os outros, ou procurei atrair atenção imprópria para o meu corpo?" },
+    { id: 35, text: "Fui excessivo ou deficiente no descanso e na recreação, recusando-me até a demonstrar alegria diante do humor dos outros?" },
+    { id: 36, text: "Deixei de refletir e planejar minhas ações, de aplicar os critérios de Cristo a elas ou de evitar situações de pecado?" },
+    { id: 37, text: "Dirigi de forma imprudente, acima do limite de velocidade, desrespeitando as leis de trânsito ou sob efeito de álcool?" },
+
+    // Ira
+    { id: 38, text: "Tolerei abusos contra os outros ou contra Deus?" },
+    { id: 39, text: "Imaginei conversas ruins para alimentar minha ira, planejei vingança ou julguei com precipitação?" },
+    { id: 40, text: "Deixei de procurar ser pacificador?" },
+    { id: 41, text: "Fui fisicamente violento, insultei ou briguei com alguém?" },
+    { id: 42, text: "Recusei-me a perdoar ou fui lento ou pouco gracioso em perdoar?" },
+    { id: 43, text: "Perdi a paciência com pessoas, acontecimentos, sofrimentos ou doenças?" },
+
+    // Cobiça / Avareza
+    { id: 44, text: "Deixei de procurar ser pobre, como Cristo se fez pobre por nós, ou de viver o desapego interior do mundo e das suas glórias passageiras?" },
+    { id: 45, text: "Busquei satisfações terrenas em vez de ter o Senhor como minha herança sacerdotal, ou deixei de renunciar às atividades mundanas que não convêm a um sacerdote?" },
+    { id: 46, text: "Preocupei-me excessivamente com o meu conforto e bem-estar, ou tive afetação ou luxo nas minhas refeições fora de casa, moradia, transporte, carro ou férias?" },
+    { id: 47, text: "Fui ressentido com a falta de dinheiro?" },
+    { id: 48, text: "Deixei de ser generoso e alegre em dar, sobretudo aos pobres?" },
+    { id: 49, text: "Trapaceei, roubei, peguei algo emprestado sem permissão ou deixei de pagar minhas contas em dia?" },
+    { id: 50, text: "Fui desonesto nas minhas relações com os outros ou usei pessoas para os meus próprios fins e vantagens?" },
+    { id: 51, text: "Desperdicei dinheiro com despesas desnecessárias, jogos de azar ou comida?" },
+    { id: 52, text: "Deixei de guardar segredos?" },
+    { id: 53, text: "Cometi homicídio?" },
+
+    // Inveja e pecados da língua
+    { id: 54, text: "Tive inveja das habilidades, talentos, ideias, planos, boa aparência, inteligência, roupas, carro, bens ou amigos de outra pessoa?" },
+    { id: 55, text: "Falei mal de alguém pelas costas, fiz mexericos ou prejudiquei a reputação de alguém?" },
+    { id: 56, text: "Levei outros, por atos, olhares ou palavras, a ter uma opinião pior de alguém, ou levei outros a fofocar?" },
+    { id: 57, text: "Exagerei ou menti sobre as faltas dos outros, ou repeti acusações que podiam não ser verdadeiras?" },
+    { id: 58, text: "Deixei de mudar de assunto ou de me afastar de conversas em que outros fofocavam, ou de defender a reputação dos outros?" },
+    { id: 59, text: "Zombei de alguém ou o amaldiçoei?" },
+    { id: 60, text: "Gabei-me de mim mesmo ou adulei alguém?" },
+    { id: 61, text: "Fui culpado de engano?" },
+
+    // Preguiça
+    { id: 62, text: "Coloquei outras prioridades, como amizades, ambição clerical, conforto e comodidade, à frente de Deus, ou me envolvi tanto com as coisas deste mundo que me esqueci dele?" },
+    { id: 63, text: "Arrisquei perder a minha fé por más companhias, más leituras, covardia ou orgulho?" },
+    { id: 64, text: "Deixei de confiar em Deus, sobretudo nos momentos de dificuldade?" },
+    { id: 65, text: "Deixei de santificar o Dia do Senhor ou trabalhei sem necessidade no domingo?" },
+    { id: 66, text: "Omiti alguma parte do meu plano de vida: Missa diária, Breviário, Hora Santa, oração mental, Terço ou leitura espiritual?" },
+    { id: 67, text: "Recebi a Santa Comunhão sem reverência?" },
+    { id: 68, text: "Deixei de fazer a devida preparação antes da Missa ou a devida ação de graças depois dela?" },
+    { id: 69, text: "Acolhi distrações na oração, deixei de dar a Deus a devida concentração ou rezei o Terço ou o Ofício com pressa?" },
+    { id: 70, text: "Por falta de esforço e de disciplina, deixei de ir dormir na hora certa, cochilando na oração ou ficando sem o sono de que preciso para estudar, para o apostolado e para viver a caridade com o próximo?" },
+    { id: 71, text: "Tomei o nome de Deus em vão ou causei escândalo com linguagem grosseira?" },
+    { id: 72, text: "Dei mau exemplo ou escândalo, levando outros ao pecado, ou deixei de dar o bom exemplo que Cristo espera de um seminarista?" },
+    { id: 73, text: "Negligenciei os deveres do meu apostolado ou fui desleixado ou displicente nos meus estudos?" },
+    { id: 74, text: "Procrastinei, evitando prioridades mais sérias, ou perdi tempo nas redes sociais, na TV inútil, navegando sem propósito na internet, no celular ou no tablet?" },
+    { id: 75, text: "Deixei de ser justo, trabalhador e honesto no meu trabalho?" },
+    { id: 76, text: "Deixei de rezar pelos outros, rezando só por mim?" },
+    { id: 77, text: "Pequei chegando atrasado a reuniões, à Missa ou às orações, ou fazendo os outros perderem tempo por chegar atrasado ou despreparado?" },
+
+    // Gula
+    { id: 78, text: "Comi mais do que preciso ou busquei comida com atenção indevida?" },
+    { id: 79, text: "Comi com pressa e sem consideração pelos outros, deixando de olhar para as necessidades deles à mesa, por exemplo ficando sempre com o último biscoito?" },
+    { id: 80, text: "Deixei de praticar o jejum e a renúncia, sobretudo às sextas-feiras e em outros dias de jejum, ou de guardar o jejum antes de receber a Santa Comunhão?" },
+    { id: 81, text: "Meu coração esteve voltado ao prazer e à diversão?" },
+    { id: 82, text: "Bebi álcool em excesso, repetidas vezes, ou deixei de usar de prudência para planejar a quantidade da minha bebida?" }
+];
+
 export const GENERAL_CONFESSION_QUESTIONS: Question[] = [
     { id: 1, text: "Faz muito tempo que não me confesso? Há quanto tempo estou longe do sacramento da confissão?" },
     { id: 2, text: "Escondi, conscientemente, algum pecado grave em minhas confissões passadas?" },

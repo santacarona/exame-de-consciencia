@@ -18,11 +18,9 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
   const isDismissed = React.useRef(false);
   const x = useMotionValue(0);
 
-  const rotate = useTransform(x, [-250, 250], [-8, 8]);
+  const rotate = useTransform(x, [-250, 250], [-6, 6]);
   const rightStampOpacity = useTransform(x, [20, 80], [0, 1]);
   const leftStampOpacity = useTransform(x, [-20, -80], [0, 1]);
-  const confessGlowOpacity = useTransform(x, [0, 120], [0, 0.12]);
-  const denyGlowOpacity = useTransform(x, [0, -120], [0, 0.12]);
 
   const dismiss = (direction: 'right' | 'left', velocity = 0) => {
     if (isDismissed.current) return;
@@ -67,11 +65,11 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
 
     return (
         <div className="flex flex-col items-center justify-center my-4 relative w-full z-10">
-            <h2 className="font-serif text-2xl md:text-3xl font-normal leading-snug text-center text-parchment mb-6">
+            <h2 className="font-sans text-[22px] md:text-[26px] font-semibold tracking-[-0.3px] leading-[1.3] text-center text-ink mb-5">
                 {mainText}
             </h2>
             {subText && (
-                <p className="font-serif text-base md:text-lg text-center text-parchment-dim max-w-[90%] leading-relaxed border-t border-primary/20 pt-4 font-normal opacity-80">
+                <p className="font-sans text-[15px] md:text-[16px] text-center text-ink-muted-80 max-w-[90%] leading-[1.47] border-t border-hairline pt-4 font-normal">
                     {subText}
                 </p>
             )}
@@ -80,7 +78,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
   };
 
   return (
-    <div className="absolute inset-x-8 inset-y-2 flex items-center justify-center pointer-events-none">
+    <div className="absolute inset-x-6 inset-y-2 flex items-center justify-center pointer-events-none">
       <motion.div
         style={{ x, rotate }}
         animate={{ opacity: isExiting ? 0 : 1 }}
@@ -90,41 +88,26 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
         dragElastic={1}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 40 }}
         onDragEnd={handleDragEnd}
-        className="pointer-events-auto glass-panel relative w-full max-w-sm h-full max-h-[400px] rounded-2xl p-6 flex flex-col items-center justify-between group border border-white/5 cursor-grab active:cursor-grabbing"
+        className="pointer-events-auto relative w-full max-w-sm h-full max-h-[400px] rounded-lg bg-surface-pearl border border-hairline p-8 flex flex-col items-center justify-between cursor-grab active:cursor-grabbing"
       >
-        {/* Inner Border Decoration */}
-        <div className="absolute inset-3 border border-primary/10 rounded-xl pointer-events-none"></div>
-
-        {/* Dynamic Glow Backgrounds (Simulating the blobs in Stitch) */}
-        <motion.div style={{ opacity: confessGlowOpacity }} className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-48 h-48 bg-confess blur-[80px] rounded-full"></div>
-        </motion.div>
-        
-        <motion.div style={{ opacity: denyGlowOpacity }} className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-48 h-48 bg-deny blur-[80px] rounded-full"></div>
-        </motion.div>
-
-        {/* Top Spacer */}
-        <div className="w-full h-4 shrink-0"></div>
-
         {/* Content */}
         <div className="flex-1 flex items-center justify-center w-full">
             {renderQuestionText(question.text)}
         </div>
 
-        {/* STAMPS (Centered Horizontally only) */}
-        <motion.div 
+        {/* STAMPS */}
+        <motion.div
             style={{ opacity: rightStampOpacity }}
-            className="absolute top-24 left-1/2 -translate-x-1/2 rotate-12 border-[6px] border-confess text-confess px-4 py-2 rounded-lg pointer-events-none font-serif font-bold text-4xl tracking-widest mix-blend-plus-lighter z-50 shadow-[0_0_30px_rgba(158,43,43,0.6)] backdrop-blur-[2px]"
+            className="absolute top-8 left-1/2 -translate-x-1/2 rotate-6 bg-primary text-white px-5 py-2 rounded-pill pointer-events-none font-sans font-semibold text-sm tracking-[0.15em] uppercase z-50"
         >
-            CONFESSO
+            Confesso
         </motion.div>
 
-        <motion.div 
+        <motion.div
             style={{ opacity: leftStampOpacity }}
-            className="absolute top-24 left-1/2 -translate-x-1/2 -rotate-12 border-[6px] border-deny text-deny px-4 py-2 rounded-lg pointer-events-none font-serif font-bold text-4xl tracking-widest mix-blend-plus-lighter z-50 shadow-[0_0_30px_rgba(255,255,255,0.25)] backdrop-blur-[2px]"
+            className="absolute top-8 left-1/2 -translate-x-1/2 -rotate-6 bg-surface-tile-1 border border-hairline text-ink-muted-80 px-5 py-2 rounded-pill pointer-events-none font-sans font-semibold text-sm tracking-[0.15em] uppercase z-50"
         >
-            NEGO
+            Nego
         </motion.div>
 
       </motion.div>

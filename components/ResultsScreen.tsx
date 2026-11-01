@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Copy, Check, RotateCcw, BookOpen, ArrowLeft, ScrollText, Diamond } from 'lucide-react';
+import { Copy, Check, RotateCcw, BookOpen, ScrollText } from 'lucide-react';
 import { PrayerModal } from './PrayerModal';
 import { AdBanner } from './AdBanner';
 import { SantaCaronaSignature } from './SantaCaronaSignature';
+import { AppHeader } from './AppHeader';
 
 interface ResultsScreenProps {
   accusedSins: string[];
@@ -22,104 +23,81 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
   };
 
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden animate-in fade-in duration-500">
-      
-      {/* Header - Removed bg, blur and border "blocks" */}
-      <header className="relative z-10 flex items-center justify-between px-4 py-4 sticky top-0 shrink-0">
-        <button 
-            onClick={onReset}
-            className="flex items-center justify-center w-10 h-10 rounded-full text-parchment-dim hover:bg-primary-dim/50 transition-colors"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <div className="flex items-center gap-2">
-          <ScrollText className="text-primary" size={24} strokeWidth={1.5} />
-          <h1 className="text-lg font-bold tracking-tight text-white font-sans">Resumo da Confissão</h1>
-        </div>
-        <div className="w-10"></div>
-      </header>
+    <div className="relative flex h-full w-full flex-col bg-canvas overflow-hidden animate-in fade-in duration-500">
+
+      <AppHeader
+        label="Resumo da Confissão"
+        onBack={onReset}
+        right={<ScrollText className="text-primary" size={20} strokeWidth={1.5} />}
+      />
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 overflow-y-auto px-4 py-2 scroll-smooth">
-        <div className="mb-6 text-center">
-            <p className="text-sm text-parchment-dim/80 leading-relaxed px-2 font-sans">
-                Abaixo estão os pontos que sua consciência examinou.
-            </p>
-        </div>
+      <main className="relative z-10 flex-1 overflow-y-auto px-5 py-2 scroll-smooth">
+        <p className="text-body-muted text-[14px] leading-relaxed px-1 font-sans text-center mb-6">
+          Abaixo estão os pontos que sua consciência examinou.
+        </p>
 
-        <div className="relative flex flex-col mb-6">
-            {/* Top Gradient Border - Kept as separator */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
-            
-            <div className="px-3 py-5 sm:p-6">
-                {accusedSins.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-8 text-parchment-dim/60 gap-3">
-                         <div className="p-3 rounded-full bg-obsidian/50 border border-primary/20">
-                            <Check size={24} className="text-primary" />
-                         </div>
-                         <p className="text-sm font-sans">Nenhuma falta acusada.</p>
-                    </div>
-                ) : (
-                    <ul className="flex flex-col gap-3">
-                        {accusedSins.map((sin, index) => (
-                            <li key={index} className="relative flex items-start gap-3 p-3 rounded-lg bg-obsidian/40 border border-primary-dim/30 hover:border-primary/40 transition-colors group">
-                                <div className="mt-1 flex items-center justify-center shrink-0">
-                                    {/* Purple Diamond Icon matching button */}
-                                    <Diamond size={12} fill="#FF4F00" className="text-primary drop-shadow-[0_0_6px_rgba(255,79,0,0.4)]" />
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-base font-normal text-parchment leading-relaxed text-pretty font-sans">
-                                        {sin}
-                                    </p>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-        </div>
-        
-        {/* Spacer for scrolling clearance - Increased to match top spacing visual */}
-        <div className="h-10"></div>
+        {accusedSins.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-10 text-body-muted gap-3 border border-hairline rounded-lg bg-surface-pearl">
+            <Check size={24} className="text-primary" />
+            <p className="text-[14px] font-sans">Nenhuma falta acusada.</p>
+          </div>
+        ) : (
+          <ul className="flex flex-col">
+            {accusedSins.map((sin, index) => (
+              <li
+                key={index}
+                className="flex items-start gap-3 py-4 border-t border-hairline first:border-t-0"
+              >
+                <span className="mt-[7px] w-1.5 h-1.5 rounded-pill bg-primary shrink-0" />
+                <p className="text-[16px] font-normal text-ink leading-[1.47] tracking-[-0.2px] font-sans">
+                  {sin}
+                </p>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="h-8" />
       </main>
 
-      {/* Footer - Removed bg, blur and border "blocks" */}
-      <footer className="relative z-20 px-4 py-4 pb-6 flex flex-col gap-3 shrink-0">
+      {/* Footer */}
+      <footer className="relative z-20 px-5 py-4 pb-6 flex flex-col gap-3 shrink-0">
         <AdBanner className="mb-1" />
 
-        <button 
-            onClick={() => setIsPrayerOpen(true)}
-            className="group w-full flex items-center justify-center gap-3 bg-primary hover:bg-primary-dim active:scale-[0.98] text-white font-bold py-3.5 px-6 rounded-lg shadow-lg shadow-primary/20 transition-all duration-200"
+        <button
+          onClick={() => setIsPrayerOpen(true)}
+          className="w-full flex items-center justify-center gap-3 bg-primary text-white font-semibold text-[15px] py-3.5 px-6 rounded-pill transition-transform active:scale-95"
         >
-            <BookOpen className="group-hover:animate-pulse" size={24} />
-            <span className="font-sans">Rezar Ato de Contrição</span>
+          <BookOpen size={20} />
+          <span className="font-sans">Rezar Ato de Contrição</span>
         </button>
 
         <div className="grid grid-cols-2 gap-3">
-            <button 
-                onClick={handleCopy}
-                disabled={accusedSins.length === 0}
-                className="w-full flex items-center justify-center gap-2 bg-transparent border border-parchment-dim/40 hover:bg-primary/10 text-parchment-dim hover:text-white font-semibold py-3 px-4 rounded-lg transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-                {copied ? <Check size={20} className="text-emerald-400" /> : <Copy size={20} />}
-                <span className="font-sans">{copied ? 'Copiado' : 'Copiar'}</span>
-            </button>
-            
-            <button 
-                onClick={onReset}
-                className="w-full flex items-center justify-center gap-2 bg-transparent hover:bg-primary-dim/30 text-[#5C5C5C] hover:text-parchment font-medium py-3 px-4 rounded-lg transition-colors active:scale-[0.98]"
-            >
-                <RotateCcw size={20} />
-                <span className="font-sans">Finalizar</span>
-            </button>
+          <button
+            onClick={handleCopy}
+            disabled={accusedSins.length === 0}
+            className="w-full flex items-center justify-center gap-2 bg-surface-pearl border border-hairline text-ink-muted-80 font-semibold text-[14px] py-3 px-4 rounded-md transition-transform active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {copied ? <Check size={18} className="text-primary" /> : <Copy size={18} />}
+            <span className="font-sans">{copied ? 'Copiado' : 'Copiar'}</span>
+          </button>
+
+          <button
+            onClick={onReset}
+            className="w-full flex items-center justify-center gap-2 bg-transparent text-ink-muted-48 font-semibold text-[14px] py-3 px-4 rounded-md transition-transform active:scale-95 hover:text-ink-muted-80"
+          >
+            <RotateCcw size={18} />
+            <span className="font-sans">Finalizar</span>
+          </button>
         </div>
-        
+
         <SantaCaronaSignature />
       </footer>
 
-      <PrayerModal 
-        isOpen={isPrayerOpen} 
-        onClose={() => setIsPrayerOpen(false)} 
+      <PrayerModal
+        isOpen={isPrayerOpen}
+        onClose={() => setIsPrayerOpen(false)}
       />
 
     </div>
