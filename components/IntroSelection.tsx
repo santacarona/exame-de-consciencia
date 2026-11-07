@@ -29,7 +29,7 @@ const PROFILES: ProfileOption[] = [
 
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
   return (
-    <div className="relative h-full w-full overflow-y-auto bg-canvas animate-in fade-in duration-700">
+    <div className="relative flex-1 min-h-0 w-full overflow-y-auto bg-canvas animate-in fade-in duration-700">
       <main className="min-h-full flex flex-col justify-center px-6 w-full max-w-md mx-auto z-10 py-10">
 
         {/* Hero */}

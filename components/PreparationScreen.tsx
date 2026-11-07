@@ -10,7 +10,7 @@ interface PreparationScreenProps {
 
 export const PreparationScreen: React.FC<PreparationScreenProps> = ({ onComplete, onBack }) => {
   return (
-    <div className="relative z-10 flex flex-col h-full w-full bg-canvas text-ink font-sans overflow-hidden animate-in fade-in duration-700">
+    <div className="relative z-10 flex flex-col flex-1 min-h-0 w-full bg-canvas text-ink font-sans overflow-hidden animate-in fade-in duration-700">
 
       {onBack ? (
         <AppHeader label="Oração Preparatória" onBack={onBack} />

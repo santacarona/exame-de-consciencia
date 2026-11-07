@@ -10,7 +10,7 @@ interface InstructionsScreenProps {
 
 export const InstructionsScreen: React.FC<InstructionsScreenProps> = ({ onBack }) => {
   return (
-    <div className="relative flex h-full w-full flex-col bg-canvas text-ink font-sans animate-in fade-in duration-500">
+    <div className="relative flex flex-1 min-h-0 w-full flex-col bg-canvas text-ink font-sans animate-in fade-in duration-500">
 
       <AppHeader label="Como funciona" onBack={onBack} />
 

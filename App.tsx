@@ -108,10 +108,10 @@ export default function App() {
   };
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-canvas text-ink overflow-hidden font-sans selection:bg-primary selection:text-white">
+    <div className="fixed inset-0 flex flex-col bg-canvas text-ink overflow-hidden font-sans selection:bg-primary selection:text-white">
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full h-full max-w-lg mx-auto flex flex-col">
+      <div className="relative z-10 w-full flex-1 min-h-0 max-w-lg mx-auto flex flex-col">
         
         {stage === 'intro' && (
           <IntroSelection 
@@ -141,7 +141,7 @@ export default function App() {
         )}
 
         {stage === 'exam' && questions.length > 0 && (
-          <div className="flex flex-col h-full w-full">
+          <div className="flex flex-col flex-1 min-h-0 w-full">
              
             {/* Header */}
             <header className="relative z-10 w-full px-4 pt-4 pb-2 flex items-center justify-between shrink-0">
