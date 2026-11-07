@@ -15,7 +15,6 @@ interface ProfileOption {
   icon: React.ElementType;
   title: string;
   description: string;
-  tag?: string;
 }
 
 const PROFILES: ProfileOption[] = [
@@ -24,7 +23,7 @@ const PROFILES: ProfileOption[] = [
   { type: 'adult', icon: Briefcase, title: 'Adulto', description: 'Batalhas da maturidade.' },
   { type: 'seminarian', icon: GraduationCap, title: 'Seminarista', description: 'Formação e vocação.' },
   { type: 'priest', icon: Church, title: 'Sacerdote', description: 'Vocação e serviço ao altar.' },
-  { type: 'general', icon: Scroll, title: 'Confissão Geral', description: 'Renovação completa da fé.', tag: 'COMPLETA' },
+  { type: 'general', icon: Scroll, title: 'Confissão Geral', description: 'Renovação completa da fé.' },
 ];
 
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
@@ -68,7 +67,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
 
         {/* Profile list */}
         <div className="flex flex-col gap-3 w-full md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
-          {PROFILES.map(({ type, icon: Icon, title, description, tag }) => (
+          {PROFILES.map(({ type, icon: Icon, title, description }) => (
             <button
               key={type}
               onClick={() => onSelect(type)}
@@ -76,13 +75,8 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
             >
               <Icon className="text-primary w-7 h-7 shrink-0" strokeWidth={1.5} />
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-ink text-[17px] font-semibold tracking-[-0.1px]">{title}</h3>
-                  {tag && (
-                    <span className="text-[10px] font-semibold text-primary tracking-[0.1em]">{tag}</span>
-                  )}
-                </div>
-                <p className="text-body-muted text-[14px] leading-snug font-sans mt-0.5">
+                <h3 className="text-ink text-[17px] font-semibold tracking-[-0.1px] truncate">{title}</h3>
+                <p className="text-body-muted text-[14px] leading-snug font-sans mt-0.5 truncate">
                   {description}
                 </p>
               </div>
