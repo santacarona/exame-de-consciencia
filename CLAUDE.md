@@ -69,8 +69,10 @@ Webapp de exame de consciência para preparação à confissão católica. Criad
     ├── ResultsScreen.tsx         # Lista de pecados acusados ao final
     ├── ConfirmationModal.tsx     # Modal de confirmação de saída
     ├── PrayerModal.tsx           # Modal de oração
-    ├── AdBanner.tsx              # Banner Google AdSense (320×50)
-    └── SantaCaronaSignature.tsx  # Assinatura "Uma iniciativa + logo SC"
+    ├── AdBanner.tsx              # Bloco AdSense responsivo com borda hairline
+    ├── AppHeader.tsx             # Header das telas secundárias (Esc volta)
+    ├── useDialogKeyboard.ts      # Hook dos modais: Esc fecha, Tab preso no modal
+    └── SantaCaronaSignature.tsx  # Logo SC no rodapé das telas
 ```
 
 ---
@@ -134,32 +136,58 @@ Referência completa do kit (cores, tipografia, componentes, breakpoints) ficou 
 
 ---
 
+## Layout e Responsividade
+
+Mobile-first, com adaptações a partir de `md` (768px, tablet) e `lg` (1024px, desktop). O celular é o layout de referência — mudanças para telas maiores ficam atrás de `md:`/`lg:` e não devem alterar o mobile.
+
+- A raiz (`App.tsx`) ocupa a largura toda; **cada tela limita a largura do próprio conteúdo** (ex.: `max-w-md md:max-w-xl mx-auto` dentro do container que rola). Assim a barra de rolagem fica na borda da janela.
+- **Alturas vêm de flex (`flex-1 min-h-0`), nunca de `h-full` em cadeia.** O AdSense injeta `height: auto !important` inline nos ancestrais do anúncio, e isso persiste entre telas. Com `h-full`, as áreas roláveis cresciam com o conteúdo e a rolagem morria no mobile (e o card do exame colapsava no desktop).
+- Tela inicial: perfis em 1 coluna (mobile), 2 (`md`) e 3 (`lg`); bloco da cruz até a publicidade centralizado verticalmente, assinatura no rodapé. Títulos e descrições dos cards são `truncate` para todos terem a mesma altura.
+- Exame: a partir de `md`, botões NEGO/CONFESSO ficam ao lado do card (no mobile, embaixo).
+
+---
+
+## Teclado e Acessibilidade
+
+O app inteiro funciona sem mouse:
+
+| Tela | Teclas |
+|------|--------|
+| Inicial | Setas navegam pela grade de perfis, Enter escolhe |
+| Oração preparatória | Enter = Amém · Esc volta |
+| Exame | ← NEGO · → CONFESSO · Backspace volta pergunta · Esc abre confirmação de saída |
+| Como funciona / Guia | Esc volta |
+| Resumo | Tab entre ações. **Esc desativado** (`backOnEscape={false}`), porque voltar apaga a lista |
+| Modais | Esc fecha, Tab fica preso no modal; na saída do exame o foco inicial é "Cancelar" |
+
+- Foco visível: `:focus-visible` com contorno laranja global no `index.html` (só aparece via teclado).
+- Modais usam `role="dialog"`; o `AppHeader` ignora Esc quando há um dialog aberto.
+- Botões só com ícone têm `aria-label`.
+
+---
+
 ## Google AdSense
 
-**Publisher ID:** `ca-pub-2560972696133896`  
-**Status:** Script ativo no `index.html`. Aguardando aprovação do domínio `santacarona.com.br` pelo Google.
+**Publisher ID:** `ca-pub-2560972696133896` · **Slot:** `6174890984` (bloco "exame-consciencia-banner-responsivo")  
+**Status:** Bloco ativo (`data-ad-format="auto"`, `data-full-width-responsive="false"`), mas em nov/2026 o Google ainda devolvia `data-ad-status="unfilled"` — o espaço (~280px) é reservado sem anúncio. `public/ads.txt` publicado.
 
-Banners posicionados em:
-- Tela inicial (`IntroSelection`) — abaixo dos cards de perfil
-- Como funciona (`InstructionsScreen`) — footer, acima do botão
-- Guia de confissão (`ConfessionGuideScreen`) — footer, acima do botão
-- Resultados (`ResultsScreen`) — entre a lista e os botões de ação
+O anúncio fica sempre **no fim do conteúdo rolável**, nunca em rodapé fixo (no rodapé, o bloco alto espremia a lista do Resumo a uma linha):
+- Tela inicial (`IntroSelection`) — abaixo da grade de perfis
+- Como funciona (`InstructionsScreen`) — fim do conteúdo
+- Guia de confissão (`ConfessionGuideScreen`) — depois dos tópicos
+- Resultados (`ResultsScreen`) — depois da lista
 
-**Para ativar após aprovação:**
-1. Criar blocos de anúncio no painel AdSense → obter os **Ad Slot IDs**
-2. Em `components/AdBanner.tsx`: substituir `AD_SLOT` pelo valor real (linha 18)
-3. O `AD_CLIENT` já está correto (`ca-pub-2560972696133896`)
-4. Fazer build + push → deploy automático
+O `AdBanner` envolve o anúncio numa borda `hairline` arredondada (`rounded-lg`). `full-width-responsive` fica desligado para o anúncio respeitar essa borda.
 
 ---
 
 ## Assinatura Santa Carona
 
-O componente `SantaCaronaSignature` exibe "Uma iniciativa" + logo branca do Santa Carona em todas as telas. A logo é carregada de:
+O componente `SantaCaronaSignature` exibe a logo branca do Santa Carona no rodapé das telas. A logo é carregada de:
 ```
 https://santacarona.com.br/wp-content/uploads/2024/03/LOGO-SC-BRANCA.png
 ```
-Tamanho atual: `w-[55%] max-w-[130px]`, opacidade `60%`.
+Tamanho atual: `w-[80px]`, opacidade `50%`. Preservar a área de respiro da marca — no exame, a linha "Fonte:" fica a 16px da logo (`space-y-4`).
 
 ---
 
