@@ -67,11 +67,12 @@ export const InstructionsScreen: React.FC<InstructionsScreenProps> = ({ onBack }
           </div>
 
         </div>
+
+        <AdBanner className="mt-8" />
       </main>
 
       {/* Footer */}
       <footer className="relative z-20 w-full p-6 shrink-0 flex flex-col items-center">
-        <AdBanner className="mb-4" />
 
         <div className="flex items-center gap-2 mb-4 opacity-60">
           <Lock size={12} className="text-ink-muted-48" />

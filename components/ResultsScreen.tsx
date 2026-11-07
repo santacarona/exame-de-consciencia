@@ -58,13 +58,11 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
           </ul>
         )}
 
-        <div className="h-8" />
+        <AdBanner className="mt-8 mb-4" />
       </main>
 
       {/* Footer */}
       <footer className="relative z-20 px-5 py-4 pb-6 flex flex-col gap-3 shrink-0">
-        <AdBanner className="mb-1" />
-
         <button
           onClick={() => setIsPrayerOpen(true)}
           className="w-full flex items-center justify-center gap-3 bg-primary text-white font-semibold text-[15px] py-3.5 px-6 rounded-pill transition-transform active:scale-95"

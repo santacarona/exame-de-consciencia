@@ -190,11 +190,12 @@ export const ConfessionGuideScreen: React.FC<ConfessionGuideScreenProps> = ({ on
           </AccordionItem>
 
         </div>
+
+        <AdBanner className="mt-6" />
       </main>
 
       {/* Footer */}
       <footer className="relative z-20 w-full p-6 pt-2 shrink-0 flex flex-col items-center">
-        <AdBanner className="mb-4" />
 
         <button
           onClick={onBack}
