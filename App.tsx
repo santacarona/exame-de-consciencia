@@ -240,7 +240,7 @@ export default function App() {
                 </p>
 
                 {/* Exam Footer Info */}
-                <div className="text-center space-y-1">
+                <div className="text-center space-y-4">
                     <p className="text-[10px] text-ink-muted-48 opacity-70 uppercase tracking-widest font-sans">
                         Fonte: {getSourceText()}
                     </p>
