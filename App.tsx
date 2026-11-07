@@ -107,7 +107,7 @@ export default function App() {
     }
   };
 
-  // Keyboard shortcuts for desktop: ← NEGO, → CONFESSO, Backspace goes back
+  // Keyboard shortcuts for desktop: ← NEGO, → CONFESSO, Backspace goes back, Escape exits
   useEffect(() => {
     if (stage !== 'exam' || showExitModal) return;
     const onKeyDown = (e: KeyboardEvent) => {
@@ -115,6 +115,7 @@ export default function App() {
       if (e.key === 'ArrowLeft') cardRef.current?.swipe('left');
       else if (e.key === 'ArrowRight') cardRef.current?.swipe('right');
       else if (e.key === 'Backspace') handleGoBack();
+      else if (e.key === 'Escape') setShowExitModal(true);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
@@ -127,7 +128,7 @@ export default function App() {
             className={`${className} flex-col items-center gap-2 group cursor-pointer shrink-0`}
             onClick={() => cardRef.current?.swipe(direction)}
         >
-            <button className={`flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-pill transition-transform active:scale-95 ${isConfess ? 'bg-primary text-white' : 'bg-surface-pearl border border-hairline text-ink-muted-80'}`}>
+            <button aria-label={isConfess ? 'Confesso' : 'Nego'} className={`flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-pill transition-transform active:scale-95 ${isConfess ? 'bg-primary text-white' : 'bg-surface-pearl border border-hairline text-ink-muted-80'}`}>
                 {isConfess ? <Check size={28} strokeWidth={1.5} /> : <XIcon size={28} strokeWidth={1.5} />}
             </button>
             <span className={`text-[11px] font-sans tracking-[0.15em] font-semibold ${isConfess ? 'text-primary' : 'text-ink-muted-48'}`}>
@@ -177,6 +178,7 @@ export default function App() {
             <header className="relative z-10 w-full max-w-3xl mx-auto px-4 pt-4 pb-2 flex items-center justify-between shrink-0">
                 <button
                     onClick={handleGoBack}
+                    aria-label="Voltar à pergunta anterior"
                     disabled={currentQuestionIndex === 0}
                     className={`flex items-center justify-center w-11 h-11 rounded-pill bg-chip-translucent text-ink transition-transform active:scale-95 ${currentQuestionIndex === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
                 >
@@ -197,6 +199,7 @@ export default function App() {
 
                 <button
                     onClick={() => setShowExitModal(true)}
+                    aria-label="Sair do exame"
                     className="flex items-center justify-center w-11 h-11 rounded-pill bg-chip-translucent text-ink transition-transform active:scale-95"
                 >
                     <X size={20} strokeWidth={1.5} />
@@ -236,7 +239,7 @@ export default function App() {
                 </div>
 
                 <p className="hidden md:block text-[11px] text-ink-muted-48 tracking-[0.1em] font-sans mb-3">
-                    Use as setas ← → do teclado
+                    ← Nego · → Confesso · Backspace volta · Esc sai
                 </p>
 
                 {/* Exam Footer Info */}

@@ -28,6 +28,7 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
       <AppHeader
         label="Resumo da Confissão"
         onBack={onReset}
+        backOnEscape={false}
         right={<ScrollText className="text-primary" size={20} strokeWidth={1.5} />}
       />
 

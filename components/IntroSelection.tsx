@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { UserType } from '../types';
 import { Briefcase, Leaf, Church, ChevronRight, Baby, Scroll, GraduationCap } from 'lucide-react';
 import { AdBanner } from './AdBanner';
@@ -27,6 +27,32 @@ const PROFILES: ProfileOption[] = [
 ];
 
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
+  const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Arrow keys move focus across the profile grid; Enter selects (native button behavior)
+  useEffect(() => {
+    const steps: Record<string, 'prev' | 'next' | 'up' | 'down'> = {
+      ArrowLeft: 'prev', ArrowRight: 'next', ArrowUp: 'up', ArrowDown: 'down',
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      const step = steps[e.key];
+      if (!step) return;
+      const cards = cardRefs.current.filter((c): c is HTMLButtonElement => !!c);
+      const current = cards.indexOf(document.activeElement as HTMLButtonElement);
+      if (current === -1 && document.activeElement !== document.body) return;
+      e.preventDefault();
+      if (current === -1) {
+        cards[0]?.focus();
+        return;
+      }
+      const columns = cards.filter(c => c.offsetTop === cards[0].offsetTop).length;
+      const delta = { prev: -1, next: 1, up: -columns, down: columns }[step];
+      cards[Math.min(Math.max(current + delta, 0), cards.length - 1)].focus();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   return (
     <div className="relative flex-1 min-h-0 w-full overflow-y-auto bg-canvas animate-in fade-in duration-700">
       <main className="min-h-full flex flex-col px-6 w-full max-w-md md:max-w-3xl lg:max-w-5xl mx-auto z-10 py-10">
@@ -67,9 +93,10 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
 
         {/* Profile list */}
         <div className="flex flex-col gap-3 w-full md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
-          {PROFILES.map(({ type, icon: Icon, title, description }) => (
+          {PROFILES.map(({ type, icon: Icon, title, description }, index) => (
             <button
               key={type}
+              ref={el => { cardRefs.current[index] = el; }}
               onClick={() => onSelect(type)}
               className="group relative flex w-full items-center gap-4 rounded-lg bg-surface-pearl p-5 text-left transition-colors duration-200 active:scale-[0.98]"
             >

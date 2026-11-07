@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Flame } from 'lucide-react';
 import { SantaCaronaSignature } from './SantaCaronaSignature';
 import { AppHeader } from './AppHeader';
@@ -9,6 +9,15 @@ interface PreparationScreenProps {
 }
 
 export const PreparationScreen: React.FC<PreparationScreenProps> = ({ onComplete, onBack }) => {
+  // Enter anywhere on the screen says Amém (a focused button keeps its own Enter)
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Enter' && !(document.activeElement instanceof HTMLButtonElement)) onComplete();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [onComplete]);
+
   return (
     <div className="relative z-10 flex flex-col flex-1 min-h-0 w-full bg-canvas text-ink font-sans overflow-hidden animate-in fade-in duration-700">
 
@@ -52,6 +61,9 @@ export const PreparationScreen: React.FC<PreparationScreenProps> = ({ onComplete
         >
           <span>AMÉM</span>
         </button>
+        <p className="hidden md:block -mt-1 text-center text-[11px] text-ink-muted-48 tracking-[0.1em] font-sans">
+          Pressione Enter
+        </p>
         <SantaCaronaSignature />
       </div>
 

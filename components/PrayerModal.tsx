@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BookOpen } from 'lucide-react';
+import { useDialogKeyboard } from './useDialogKeyboard';
 
 interface PrayerModalProps {
   isOpen: boolean;
@@ -7,6 +8,9 @@ interface PrayerModalProps {
 }
 
 export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogKeyboard(isOpen, dialogRef, onClose);
+
   if (!isOpen) return null;
 
   return (
@@ -16,7 +20,12 @@ export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose }) => 
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-sm bg-surface-pearl border border-hairline rounded-lg p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Ato de Contrição"
+        className="relative w-full max-w-sm bg-surface-pearl border border-hairline rounded-lg p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
 
         <div className="mb-5">
           <BookOpen className="w-7 h-7 text-primary" strokeWidth={1.5} />
@@ -31,6 +40,7 @@ export const PrayerModal: React.FC<PrayerModalProps> = ({ isOpen, onClose }) => 
         </p>
 
         <button
+          autoFocus
           onClick={onClose}
           className="w-full py-3 px-4 rounded-pill font-sans font-semibold text-[14px] bg-primary text-white transition-transform active:scale-95"
         >

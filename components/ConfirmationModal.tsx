@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useDialogKeyboard } from './useDialogKeyboard';
 
 interface ConfirmationModalProps {
   isOpen: boolean;
@@ -20,6 +21,9 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   confirmText = "Confirmar",
   cancelText = "Cancelar"
 }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogKeyboard(isOpen, dialogRef, onClose);
+
   if (!isOpen) return null;
 
   return (
@@ -29,7 +33,12 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
         onClick={onClose}
       />
 
-      <div className="relative w-full max-w-sm bg-surface-pearl border border-hairline rounded-lg p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label={title}
+        className="relative w-full max-w-sm bg-surface-pearl border border-hairline rounded-lg p-8 flex flex-col items-center text-center animate-in zoom-in-95 duration-300">
 
         <div className="mb-5">
           <AlertTriangle className="w-7 h-7 text-primary" strokeWidth={1.5} />
@@ -45,6 +54,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 
         <div className="flex gap-3 w-full">
           <button
+            autoFocus
             onClick={onClose}
             className="flex-1 py-3 px-4 rounded-pill font-sans font-semibold text-[14px] border border-hairline text-ink-muted-80 transition-transform active:scale-95"
           >
