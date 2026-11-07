@@ -30,7 +30,10 @@ const PROFILES: ProfileOption[] = [
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
   return (
     <div className="relative flex-1 min-h-0 w-full overflow-y-auto bg-canvas animate-in fade-in duration-700">
-      <main className="min-h-full flex flex-col justify-center px-6 w-full max-w-md md:max-w-3xl lg:max-w-5xl mx-auto z-10 py-10 md:py-16">
+      <main className="min-h-full flex flex-col px-6 w-full max-w-md md:max-w-3xl lg:max-w-5xl mx-auto z-10 py-10">
+
+        {/* Everything except the signature is centered vertically in the space above it */}
+        <div className="flex-1 flex flex-col justify-center">
 
         {/* Hero */}
         <div className="mb-8 md:mb-10 text-center flex flex-col items-center">
@@ -89,8 +92,9 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
         </div>
 
         <AdBanner className="mt-5 md:mt-8" />
+        </div>
 
-        <footer className="w-full py-4 flex items-center justify-center mt-4">
+        <footer className="w-full pt-8 flex items-center justify-center shrink-0">
           <SantaCaronaSignature />
         </footer>
       </main>
