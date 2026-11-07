@@ -65,11 +65,11 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
 
     return (
         <div className="flex flex-col items-center justify-center my-4 relative w-full z-10">
-            <h2 className="font-sans text-[22px] md:text-[26px] font-semibold tracking-[-0.3px] leading-[1.3] text-center text-ink mb-5">
+            <h2 className="font-sans text-[22px] md:text-[28px] lg:text-[32px] font-semibold tracking-[-0.3px] leading-[1.3] text-center text-ink mb-5">
                 {mainText}
             </h2>
             {subText && (
-                <p className="font-sans text-[15px] md:text-[16px] text-center text-ink-muted-80 max-w-[90%] leading-[1.47] border-t border-hairline pt-4 font-normal">
+                <p className="font-sans text-[15px] md:text-[17px] lg:text-[18px] text-center text-ink-muted-80 max-w-[90%] leading-[1.47] border-t border-hairline pt-4 font-normal">
                     {subText}
                 </p>
             )}
@@ -78,7 +78,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
   };
 
   return (
-    <div className="absolute inset-x-6 inset-y-2 flex items-center justify-center pointer-events-none">
+    <div className="absolute inset-x-0 inset-y-2 flex items-center justify-center pointer-events-none">
       <motion.div
         style={{ x, rotate }}
         animate={{ opacity: isExiting ? 0 : 1 }}
@@ -88,7 +88,7 @@ export const ExamCard = forwardRef<ExamCardHandle, ExamCardProps>(({ question, o
         dragElastic={1}
         dragTransition={{ bounceStiffness: 500, bounceDamping: 40 }}
         onDragEnd={handleDragEnd}
-        className="pointer-events-auto relative w-full max-w-sm h-full max-h-[400px] rounded-lg bg-surface-pearl border border-hairline p-8 flex flex-col items-center justify-between cursor-grab active:cursor-grabbing"
+        className="pointer-events-auto relative w-full h-full max-h-[400px] md:max-h-[480px] rounded-lg bg-surface-pearl border border-hairline p-8 md:p-12 flex flex-col items-center justify-between cursor-grab active:cursor-grabbing"
       >
         {/* Content */}
         <div className="flex-1 flex items-center justify-center w-full">

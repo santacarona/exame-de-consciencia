@@ -32,7 +32,8 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
       />
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 overflow-y-auto px-5 py-2 scroll-smooth">
+      <main className="relative z-10 flex-1 overflow-y-auto scroll-smooth">
+        <div className="px-5 py-2 md:py-6 w-full max-w-lg md:max-w-2xl mx-auto">
         <p className="text-body-muted text-[14px] leading-relaxed px-1 font-sans text-center mb-6">
           Abaixo estão os pontos que sua consciência examinou.
         </p>
@@ -59,10 +60,11 @@ export const ResultsScreen: React.FC<ResultsScreenProps> = ({ accusedSins, onRes
         )}
 
         <AdBanner className="mt-8 mb-4" />
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-20 px-5 py-4 pb-6 flex flex-col gap-3 shrink-0">
+      <footer className="relative z-20 w-full max-w-lg md:max-w-2xl mx-auto px-5 py-4 pb-6 flex flex-col gap-3 shrink-0">
         <button
           onClick={() => setIsPrayerOpen(true)}
           className="w-full flex items-center justify-center gap-3 bg-primary text-white font-semibold text-[15px] py-3.5 px-6 rounded-pill transition-transform active:scale-95"

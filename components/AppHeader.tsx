@@ -10,7 +10,7 @@ interface AppHeaderProps {
 // global-nav — ultra-thin black bar, icon-circular back button, centered nav-link label
 export const AppHeader: React.FC<AppHeaderProps> = ({ label, onBack, right }) => {
   return (
-    <header className="relative z-20 flex items-center justify-between px-4 py-3 shrink-0">
+    <header className="relative z-20 w-full max-w-3xl mx-auto flex items-center justify-between px-4 py-3 shrink-0">
       <button
         onClick={onBack}
         aria-label="Voltar"

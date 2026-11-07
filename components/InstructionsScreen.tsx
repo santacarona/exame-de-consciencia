@@ -15,7 +15,8 @@ export const InstructionsScreen: React.FC<InstructionsScreenProps> = ({ onBack }
       <AppHeader label="Como funciona" onBack={onBack} />
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 overflow-y-auto px-6 w-full max-w-md mx-auto scroll-smooth py-4">
+      <main className="relative z-10 flex-1 overflow-y-auto w-full scroll-smooth">
+        <div className="px-6 w-full max-w-md md:max-w-xl mx-auto py-4 md:py-8">
 
         <div className="flex flex-col gap-8 w-full">
 
@@ -69,10 +70,11 @@ export const InstructionsScreen: React.FC<InstructionsScreenProps> = ({ onBack }
         </div>
 
         <AdBanner className="mt-8" />
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-20 w-full p-6 shrink-0 flex flex-col items-center">
+      <footer className="relative z-20 w-full max-w-md md:max-w-xl mx-auto p-6 shrink-0 flex flex-col items-center">
 
         <div className="flex items-center gap-2 mb-4 opacity-60">
           <Lock size={12} className="text-ink-muted-48" />

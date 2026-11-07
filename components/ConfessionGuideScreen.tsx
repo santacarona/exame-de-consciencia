@@ -56,8 +56,9 @@ export const ConfessionGuideScreen: React.FC<ConfessionGuideScreenProps> = ({ on
       <AppHeader label="Guia de Confissão" onBack={onBack} />
 
       {/* Main Content */}
-      <main className="relative z-10 flex-1 px-4 w-full max-w-lg mx-auto overflow-y-auto scroll-smooth pb-8">
-        <div className="py-2">
+      <main className="relative z-10 flex-1 w-full overflow-y-auto scroll-smooth">
+        <div className="px-4 w-full max-w-lg md:max-w-2xl mx-auto pb-8">
+        <div className="py-2 md:py-6">
 
           {/* Item 1 */}
           <AccordionItem
@@ -192,10 +193,11 @@ export const ConfessionGuideScreen: React.FC<ConfessionGuideScreenProps> = ({ on
         </div>
 
         <AdBanner className="mt-6" />
+        </div>
       </main>
 
       {/* Footer */}
-      <footer className="relative z-20 w-full p-6 pt-2 shrink-0 flex flex-col items-center">
+      <footer className="relative z-20 w-full max-w-lg md:max-w-2xl mx-auto p-6 pt-2 shrink-0 flex flex-col items-center">
 
         <button
           onClick={onBack}

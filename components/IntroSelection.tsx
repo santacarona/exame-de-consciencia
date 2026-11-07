@@ -30,10 +30,10 @@ const PROFILES: ProfileOption[] = [
 export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInstructions, onConfessionGuide }) => {
   return (
     <div className="relative flex-1 min-h-0 w-full overflow-y-auto bg-canvas animate-in fade-in duration-700">
-      <main className="min-h-full flex flex-col justify-center px-6 w-full max-w-md mx-auto z-10 py-10">
+      <main className="min-h-full flex flex-col justify-center px-6 w-full max-w-md md:max-w-3xl lg:max-w-5xl mx-auto z-10 py-10 md:py-16">
 
         {/* Hero */}
-        <div className="mb-8 text-center flex flex-col items-center">
+        <div className="mb-8 md:mb-10 text-center flex flex-col items-center">
           <svg
             width="30" height="38"
             viewBox="0 0 32 40"
@@ -41,19 +41,19 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
             stroke="currentColor"
             strokeWidth="2.5"
             strokeLinecap="round"
-            className="text-primary mb-5 drop-shadow-[3px_5px_30px_rgba(0,0,0,0.22)]"
+            className="text-primary mb-5 md:w-[40px] md:h-[50px] drop-shadow-[3px_5px_30px_rgba(0,0,0,0.22)]"
           >
             <line x1="16" y1="2" x2="16" y2="38" />
             <line x1="5" y1="12" x2="27" y2="12" />
           </svg>
 
-          <h1 className="text-ink text-[34px] leading-[1.1] font-semibold tracking-[-0.3px]">
+          <h1 className="text-ink text-[34px] md:text-[48px] lg:text-[56px] leading-[1.1] font-semibold tracking-[-0.3px]">
             Exame de <span className="text-primary">Consciência</span>
           </h1>
         </div>
 
         {/* Support links */}
-        <div className="flex items-center justify-center gap-3 mb-7 text-[12px] font-normal tracking-[0.1em] text-ink-muted-48 font-sans uppercase">
+        <div className="flex items-center justify-center gap-3 mb-7 md:mb-10 text-[12px] md:text-[13px] font-normal tracking-[0.1em] text-ink-muted-48 font-sans uppercase">
           <button onClick={onInstructions} className="hover:text-primary transition-colors">
             Dúvidas sobre o app?
           </button>
@@ -64,7 +64,7 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
         </div>
 
         {/* Profile list */}
-        <div className="flex flex-col gap-3 w-full">
+        <div className="flex flex-col gap-3 w-full md:grid md:grid-cols-2 md:gap-4 lg:grid-cols-3">
           {PROFILES.map(({ type, icon: Icon, title, description, tag }) => (
             <button
               key={type}
@@ -86,9 +86,9 @@ export const IntroSelection: React.FC<IntroSelectionProps> = ({ onSelect, onInst
               <ChevronRight className="text-ink-muted-48 group-hover:text-primary transition-colors shrink-0" size={20} />
             </button>
           ))}
-
-          <AdBanner className="mt-2" />
         </div>
+
+        <AdBanner className="mt-5 md:mt-8" />
 
         <footer className="w-full py-4 flex items-center justify-center mt-4">
           <SantaCaronaSignature />

@@ -107,11 +107,41 @@ export default function App() {
     }
   };
 
+  // Keyboard shortcuts for desktop: ← NEGO, → CONFESSO, Backspace goes back
+  useEffect(() => {
+    if (stage !== 'exam' || showExitModal) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+      if (e.key === 'ArrowLeft') cardRef.current?.swipe('left');
+      else if (e.key === 'ArrowRight') cardRef.current?.swipe('right');
+      else if (e.key === 'Backspace') handleGoBack();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [stage, showExitModal, currentQuestionIndex, questions]);
+
+  const renderActionButton = (direction: 'left' | 'right', className = 'flex') => {
+    const isConfess = direction === 'right';
+    return (
+        <div
+            className={`${className} flex-col items-center gap-2 group cursor-pointer shrink-0`}
+            onClick={() => cardRef.current?.swipe(direction)}
+        >
+            <button className={`flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 rounded-pill transition-transform active:scale-95 ${isConfess ? 'bg-primary text-white' : 'bg-surface-pearl border border-hairline text-ink-muted-80'}`}>
+                {isConfess ? <Check size={28} strokeWidth={1.5} /> : <XIcon size={28} strokeWidth={1.5} />}
+            </button>
+            <span className={`text-[11px] font-sans tracking-[0.15em] font-semibold ${isConfess ? 'text-primary' : 'text-ink-muted-48'}`}>
+                {isConfess ? 'CONFESSO' : 'NEGO'}
+            </span>
+        </div>
+    );
+  };
+
   return (
     <div className="fixed inset-0 flex flex-col bg-canvas text-ink overflow-hidden font-sans selection:bg-primary selection:text-white">
 
       {/* Main Content Container */}
-      <div className="relative z-10 w-full flex-1 min-h-0 max-w-lg mx-auto flex flex-col">
+      <div className="relative z-10 w-full flex-1 min-h-0 flex flex-col">
         
         {stage === 'intro' && (
           <IntroSelection 
@@ -144,7 +174,7 @@ export default function App() {
           <div className="flex flex-col flex-1 min-h-0 w-full">
              
             {/* Header */}
-            <header className="relative z-10 w-full px-4 pt-4 pb-2 flex items-center justify-between shrink-0">
+            <header className="relative z-10 w-full max-w-3xl mx-auto px-4 pt-4 pb-2 flex items-center justify-between shrink-0">
                 <button
                     onClick={handleGoBack}
                     disabled={currentQuestionIndex === 0}
@@ -180,43 +210,34 @@ export default function App() {
                 </p>
             </div>
 
-            {/* Main Card Area */}
-            <main className="relative z-10 flex-1 w-full flex items-center justify-center px-6 py-2 overflow-visible min-h-0">
-                <ExamCard
-                    ref={cardRef}
-                    key={questions[currentQuestionIndex].id}
-                    question={questions[currentQuestionIndex]}
-                    onResult={handleCardResult}
-                    currentIndex={currentQuestionIndex}
-                    totalCount={questions.length}
-                />
+            {/* Main Card Area — on tablet/desktop the action buttons sit beside the card */}
+            <main className="relative z-10 flex-1 w-full flex items-center justify-center gap-10 lg:gap-16 px-6 py-2 overflow-visible min-h-0">
+                {renderActionButton('left', 'hidden md:flex')}
+
+                <div className="relative h-full w-full max-w-sm md:max-w-md lg:max-w-lg">
+                    <ExamCard
+                        ref={cardRef}
+                        key={questions[currentQuestionIndex].id}
+                        question={questions[currentQuestionIndex]}
+                        onResult={handleCardResult}
+                        currentIndex={currentQuestionIndex}
+                        totalCount={questions.length}
+                    />
+                </div>
+
+                {renderActionButton('right', 'hidden md:flex')}
             </main>
 
             {/* Footer Actions */}
             <footer className="relative z-10 w-full px-8 pb-4 pt-2 shrink-0 flex flex-col items-center">
-                <div className="flex items-center justify-between w-full max-w-sm mx-auto mb-3">
-                    {/* Nego Button - Triggers Left Swipe */}
-                    <div
-                        className="flex flex-col items-center gap-2 group cursor-pointer"
-                        onClick={() => cardRef.current?.swipe('left')}
-                    >
-                        <button className="flex items-center justify-center w-16 h-16 rounded-pill bg-surface-pearl border border-hairline text-ink-muted-80 transition-transform active:scale-95">
-                            <XIcon size={28} strokeWidth={1.5} />
-                        </button>
-                        <span className="text-[11px] font-sans tracking-[0.15em] text-ink-muted-48 font-semibold">NEGO</span>
-                    </div>
-
-                    {/* Confesso Button - Triggers Right Swipe */}
-                    <div
-                        className="flex flex-col items-center gap-2 group cursor-pointer"
-                        onClick={() => cardRef.current?.swipe('right')}
-                    >
-                        <button className="flex items-center justify-center w-16 h-16 rounded-pill bg-primary text-white transition-transform active:scale-95">
-                            <Check size={28} strokeWidth={1.5} />
-                        </button>
-                        <span className="text-[11px] font-sans tracking-[0.15em] text-primary font-semibold">CONFESSO</span>
-                    </div>
+                <div className="flex md:hidden items-center justify-between w-full max-w-sm mx-auto mb-3">
+                    {renderActionButton('left')}
+                    {renderActionButton('right')}
                 </div>
+
+                <p className="hidden md:block text-[11px] text-ink-muted-48 tracking-[0.1em] font-sans mb-3">
+                    Use as setas ← → do teclado
+                </p>
 
                 {/* Exam Footer Info */}
                 <div className="text-center space-y-1">
